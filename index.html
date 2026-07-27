@@ -459,11 +459,11 @@ const QUIZ_QUESTIONS = [
 
 /* ---------- STATE (lưu bằng localStorage) ---------- */
 function getHistory(){
-  try{ return JSON.parse(localStorage.getItem('thaiiu_history') || '[]'); }
+  try{ return JSON.parse(localStorage.getItem('trinhiu_history') || '[]'); }
   catch(e){ return []; }
 }
 function saveHistory(list){
-  localStorage.setItem('thaiiu_history', JSON.stringify(list));
+  localStorage.setItem('trinhiu_history', JSON.stringify(list));
 }
 function addHistory(text){
   const list = getHistory();

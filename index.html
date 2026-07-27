@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="vi"> 
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trịnh iu chọn đi 💗</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style> 
+<style>
   :root{
     --cream:#FFF7E8;
     --cream-deep:#FBEFD2;
@@ -227,6 +227,29 @@
   }
 
   /* Wheel */
+  .wheel-tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .wheel-tab{
+    padding:7px 14px;
+    border-radius:999px;
+    border:2px solid var(--pink);
+    background:#fff;
+    color:var(--pink-deep);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .wheel-tab.active{
+    background:var(--pink-deep);
+    color:#fff;
+    border-color:var(--pink-deep);
+  }
   .wheel-wrap{
     display:flex;
     justify-content:center;
@@ -268,7 +291,7 @@
     color:var(--sage-deep);
   }
 
-  /* Quiz */
+  /* Quiz (câu hỏi hiểu nhau) */
   .quiz-progress{
     text-align:center;
     font-size:12px;
@@ -291,11 +314,141 @@
     font-size:16px;
   }
 
-  .decor{
-    position:absolute;
-    font-size:20px;
-    opacity:0.5;
-    pointer-events:none;
+  /* Love counter */
+  .counter-setup{
+    background:#fff;
+    border-radius:20px;
+    padding:22px 20px;
+    text-align:center;
+    border:2px dashed var(--pink);
+  }
+  .counter-setup input[type="date"]{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:2px solid var(--pink-soft);
+    font-family:'Nunito', sans-serif;
+    font-size:14px;
+    font-weight:700;
+    color:var(--brown);
+    margin-top:10px;
+    margin-bottom:6px;
+  }
+  .counter-setup label{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--pink-deep);
+  }
+  .counter-display{
+    text-align:center;
+    padding:10px 0 6px;
+  }
+  .counter-number{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:52px;
+    color:var(--pink-deep);
+    line-height:1;
+  }
+  .counter-label{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--sage-deep);
+    margin-top:4px;
+  }
+  .counter-since{
+    text-align:center;
+    font-size:12px;
+    color:var(--brown);
+    opacity:0.7;
+    margin-top:4px;
+  }
+  .milestone-box{
+    background:#fff;
+    border-radius:16px;
+    padding:16px;
+    margin-top:18px;
+    border-left:5px solid var(--pink);
+  }
+  .milestone-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    color:var(--pink-deep);
+    margin-bottom:8px;
+  }
+  .milestone-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    font-weight:600;
+    padding:5px 0;
+    border-bottom:1px dashed #f0d9e3;
+  }
+  .milestone-row:last-child{ border-bottom:none; }
+  .milestone-row.done{ color:var(--sage-deep); }
+  .milestone-row.next{ color:var(--pink-deep); font-weight:800; }
+
+  /* Love language quiz */
+  .ll-option{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:13px 16px;
+    margin-bottom:10px;
+    border-radius:14px;
+    border:2px solid var(--pink-soft);
+    background:#fff;
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--brown);
+    cursor:pointer;
+  }
+  .ll-option:hover{ background:var(--pink-soft); }
+  .ll-result-box{
+    background:#fff;
+    border-radius:20px;
+    padding:26px 20px;
+    text-align:center;
+    border:2px solid var(--pink);
+  }
+  .ll-result-icon{ font-size:40px; display:block; margin-bottom:8px; }
+  .ll-result-name{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:19px;
+    color:var(--pink-deep);
+    margin-bottom:8px;
+  }
+  .ll-result-desc{
+    font-size:14px;
+    font-weight:600;
+    line-height:1.5;
+  }
+  .ll-bars{ margin-top:18px; }
+  .ll-bar-row{ margin-bottom:10px; }
+  .ll-bar-label{
+    font-size:12px;
+    font-weight:700;
+    color:var(--sage-deep);
+    margin-bottom:3px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .ll-bar-track{
+    background:#f2e2ea;
+    border-radius:999px;
+    height:10px;
+    overflow:hidden;
+  }
+  .ll-bar-fill{
+    height:100%;
+    background:var(--pink-deep);
+    border-radius:999px;
+    transition: width .6s ease;
   }
 </style>
 </head>
@@ -321,11 +474,19 @@
       </button>
       <button class="menu-btn" onclick="showScreen('wheel')">
         VÒNG QUAY HẸN HÒ
-        <span class="sub">quay ra 1 date idea cuối tuần</span>
+        <span class="sub">ăn gì / đi đâu / làm gì cuối tuần</span>
       </button>
       <button class="menu-btn" onclick="showScreen('quiz'); startQuiz();">
         CÂU HỎI HIỂU NHAU
         <span class="sub">1 câu mỗi lần, trả lời cùng nhau</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('counter')">
+        ĐẾM NGÀY YÊU
+        <span class="sub">số ngày bên nhau + mốc kỷ niệm</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('lovelang'); startLoveLang();">
+        LOVE LANGUAGE QUIZ
+        <span class="sub">tìm ngôn ngữ tình yêu của mỗi người</span>
       </button>
     </div>
   </div>
@@ -365,7 +526,8 @@
   <div id="screen-wheel" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div class="date-tag">Quay để chọn hoạt động cuối tuần</div>
+      <div class="date-tag">Chọn nhóm rồi quay</div>
+      <div class="wheel-tabs" id="wheel-tabs"></div>
       <div class="wheel-wrap">
         <div class="pointer"></div>
         <svg id="wheel" viewBox="0 0 200 200"></svg>
@@ -377,13 +539,62 @@
     </div>
   </div>
 
-  <!-- QUIZ -->
+  <!-- QUIZ (câu hỏi hiểu nhau) -->
   <div id="screen-quiz" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
       <div class="quiz-progress" id="quiz-progress"></div>
       <div class="quiz-q" id="quiz-q"></div>
       <button class="action-btn" onclick="nextQuiz()">CÂU TIẾP THEO ➜</button>
+    </div>
+  </div>
+
+  <!-- LOVE COUNTER -->
+  <div id="screen-counter" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+
+      <div id="counter-setup-box" class="counter-setup">
+        <label>Hai đứa mình bắt đầu yêu từ ngày nào?</label>
+        <input type="date" id="counter-date-input">
+        <button class="action-btn" onclick="saveLoveDate()">LƯU LẠI 💾</button>
+      </div>
+
+      <div id="counter-result-box" style="display:none;">
+        <div class="counter-display">
+          <div class="counter-number" id="counter-days">0</div>
+          <div class="counter-label">ngày bên nhau</div>
+          <div class="counter-since" id="counter-since"></div>
+        </div>
+        <div class="milestone-box">
+          <div class="milestone-title">MỐC KỶ NIỆM</div>
+          <div id="milestone-list"></div>
+        </div>
+        <button class="action-btn secondary" onclick="editLoveDate()">SỬA NGÀY BẮT ĐẦU ✏️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOVE LANGUAGE QUIZ -->
+  <div id="screen-lovelang" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+
+      <div id="ll-quiz-box">
+        <div class="quiz-progress" id="ll-progress"></div>
+        <div class="quiz-q" id="ll-question" style="margin-bottom:16px;"></div>
+        <div id="ll-options"></div>
+      </div>
+
+      <div id="ll-result-box" style="display:none;">
+        <div class="ll-result-box">
+          <span class="ll-result-icon" id="ll-result-icon"></span>
+          <div class="ll-result-name" id="ll-result-name"></div>
+          <div class="ll-result-desc" id="ll-result-desc"></div>
+        </div>
+        <div class="ll-bars" id="ll-bars"></div>
+        <button class="action-btn secondary" onclick="startLoveLang()">LÀM LẠI 🔁</button>
+      </div>
     </div>
   </div>
 
@@ -432,17 +643,23 @@ const DRAW_CARDS = [
   { icon:"🫶", text:"Ôm người iu 10 giây không nói gì, chỉ ôm thôi." }
 ];
 
-const WHEEL_OPTIONS = [
-  "Xem phim tại nhà + đồ ăn vặt",
-  "Đi cafe quán mới chưa từng thử",
-  "Nấu ăn cùng nhau tại nhà",
-  "Đi dạo công viên buổi tối",
-  "Chơi board game / game đối kháng",
-  "Đi ăn món cả hai chưa từng ăn",
-  "Đạp xe/đi bộ buổi sáng sớm",
-  "Xem lại ảnh cũ và kể chuyện"
-];
+/* Vòng quay hẹn hò — chia theo nhóm */
+const WHEEL_GROUPS = {
+  "Ăn gì": [
+    "Lẩu cay tại nhà", "Buffet nướng", "Món Nhật (sushi/ramen)", "Quán mì cay mới mở",
+    "Đồ chay thử cho lạ", "Đặt món chưa từng ăn", "Nấu Ý tại nhà (pasta)", "Ăn vặt lề đường"
+  ],
+  "Đi đâu": [
+    "Cafe view đẹp mới mở", "Công viên buổi tối", "Bảo tàng / triển lãm", "Phố đi bộ cuối tuần",
+    "Rạp chiếu phim", "Chợ đêm", "Quán sách yên tĩnh", "Ra ngoại thành đổi gió"
+  ],
+  "Làm gì": [
+    "Xem phim tại nhà cả buổi", "Chơi board game", "Nấu ăn cùng nhau", "Đạp xe buổi sáng",
+    "Chơi game đối kháng", "Vẽ/tô màu cùng nhau", "Xem lại ảnh cũ", "Tự tổ chức 'date night' tại nhà"
+  ]
+};
 const WHEEL_COLORS = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF"];
+let currentWheelGroup = "Ăn gì";
 
 const QUIZ_QUESTIONS = [
   "Điều gì khiến bạn cảm thấy được yêu thương nhất: lời nói, hành động, quà tặng, thời gian, hay đụng chạm thân mật?",
@@ -456,6 +673,90 @@ const QUIZ_QUESTIONS = [
   "Có thói quen nào của người iu khiến bạn thấy dễ thương không?",
   "Nếu có một ngày nghỉ hoàn hảo cùng nhau, ngày đó sẽ trông như thế nào?"
 ];
+
+/* Love language quiz data */
+const LL_QUESTIONS = [
+  {
+    q: "Khi người iu làm điều gì đó khiến bạn thấy hạnh phúc nhất, đó thường là...",
+    opts: [
+      { t:"Họ nói 'anh/em tự hào về em/anh'", lang:"words" },
+      { t:"Họ chủ động giúp mình việc gì đó mà không cần nhờ", lang:"acts" },
+      { t:"Họ tặng một món quà nhỏ dù chẳng dịp gì", lang:"gifts" },
+      { t:"Họ dành cả buổi tối chỉ ở bên mình, không làm gì khác", lang:"time" }
+    ]
+  },
+  {
+    q: "Nếu có một ngày mệt mỏi, bạn muốn người iu...",
+    opts: [
+      { t:"Nhắn tin động viên vài câu ấm áp", lang:"words" },
+      { t:"Âm thầm lo giúp vài việc để mình đỡ mệt hơn", lang:"acts" },
+      { t:"Mang cho mình món gì đó mình thích", lang:"gifts" },
+      { t:"Ngồi cạnh mình, không cần nói gì nhiều", lang:"touch" }
+    ]
+  },
+  {
+    q: "Bạn dễ tổn thương nhất khi người iu...",
+    opts: [
+      { t:"Nói những lời thờ ơ hoặc chê bai", lang:"words" },
+      { t:"Hứa giúp việc gì đó rồi không làm", lang:"acts" },
+      { t:"Quên những dịp quan trọng", lang:"gifts" },
+      { t:"Luôn bận rộn, ít thời gian dành cho mình", lang:"time" }
+    ]
+  },
+  {
+    q: "Với bạn, một buổi hẹn hò lý tưởng là...",
+    opts: [
+      { t:"Cả hai nói chuyện thật lòng, chia sẻ nhiều điều", lang:"words" },
+      { t:"Cùng nhau làm một việc gì đó, ví dụ nấu ăn chung", lang:"acts" },
+      { t:"Có một bất ngờ nho nhỏ trong buổi hẹn", lang:"gifts" },
+      { t:"Chỉ cần ở cạnh nhau trọn vẹn, không bị gián đoạn", lang:"time" }
+    ]
+  },
+  {
+    q: "Bạn thể hiện tình cảm với người iu chủ yếu bằng cách...",
+    opts: [
+      { t:"Nói ra cảm xúc, khen ngợi thường xuyên", lang:"words" },
+      { t:"Làm giúp những việc lặt vặt cho họ", lang:"acts" },
+      { t:"Mua/ làm quà tặng bất ngờ", lang:"gifts" },
+      { t:"Nắm tay, ôm, những cử chỉ thân mật", lang:"touch" }
+    ]
+  },
+  {
+    q: "Điều bạn nhớ lâu nhất về người iu thường là...",
+    opts: [
+      { t:"Một câu nói khiến mình xúc động", lang:"words" },
+      { t:"Một lần họ giúp mình lúc khó khăn", lang:"acts" },
+      { t:"Một món quà ý nghĩa họ tặng", lang:"gifts" },
+      { t:"Một khoảnh khắc chỉ có hai người bên nhau", lang:"time" }
+    ]
+  },
+  {
+    q: "Khi giận nhau, điều gì khiến bạn nguôi giận nhanh nhất?",
+    opts: [
+      { t:"Người iu chủ động xin lỗi bằng lời nói chân thành", lang:"words" },
+      { t:"Người iu hành động sửa sai ngay, không chỉ nói suông", lang:"acts" },
+      { t:"Một món quà nhỏ mang tính hòa giải", lang:"gifts" },
+      { t:"Một cái ôm, nắm tay làm dịu lại không khí", lang:"touch" }
+    ]
+  },
+  {
+    q: "Bạn thấy gắn kết với người iu nhất khi...",
+    opts: [
+      { t:"Được nghe họ nói về cảm xúc, suy nghĩ thật", lang:"words" },
+      { t:"Cùng làm chung một việc, hỗ trợ nhau", lang:"acts" },
+      { t:"Nhận được điều gì đó thể hiện họ có nghĩ đến mình", lang:"gifts" },
+      { t:"Có thời gian chất lượng riêng cho hai người", lang:"time" }
+    ]
+  }
+];
+
+const LL_INFO = {
+  words: { icon:"💬", name:"Lời Khẳng Định (Words of Affirmation)", desc:"Bạn cảm nhận tình yêu rõ nhất qua lời nói — một câu khen, một lời động viên, một câu 'anh/em yêu em/anh' đúng lúc có giá trị rất lớn với bạn." },
+  acts: { icon:"🛠️", name:"Hành Động Chăm Sóc (Acts of Service)", desc:"Với bạn, hành động nói lên tất cả. Khi người iu chủ động giúp đỡ, làm việc gì đó vì bạn, đó chính là cách họ nói 'anh/em yêu em/anh' rõ ràng nhất." },
+  gifts: { icon:"🎁", name:"Quà Tặng (Receiving Gifts)", desc:"Không phải vì giá trị món quà, mà vì bạn cảm nhận được sự quan tâm và suy nghĩ đằng sau nó. Một món quà nhỏ đúng lúc khiến bạn thấy được yêu." },
+  time: { icon:"⏳", name:"Thời Gian Chất Lượng (Quality Time)", desc:"Bạn trân trọng nhất là sự hiện diện trọn vẹn — không điện thoại, không xao nhãng, chỉ có hai người thật sự ở bên nhau." },
+  touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với bạn nhiều hơn cả ngàn lời nói." }
+};
 
 /* ---------- STATE (lưu bằng localStorage) ---------- */
 function getHistory(){
@@ -479,7 +780,8 @@ function showScreen(name){
   if(name==='advice') loadTodayAdvice();
   if(name==='history') renderHistory();
   if(name==='draw') resetDraw();
-  if(name==='wheel') buildWheel();
+  if(name==='wheel') initWheelScreen();
+  if(name==='counter') initCounterScreen();
 }
 
 /* ---------- ADVICE ---------- */
@@ -538,13 +840,28 @@ function pickCard(el){
   addHistory("[Thử thách] " + card.text);
 }
 
-/* ---------- WHEEL ---------- */
-let wheelBuilt = false;
+/* ---------- WHEEL (có nhóm) ---------- */
 let currentRotation = 0;
+function initWheelScreen(){
+  const tabsWrap = document.getElementById('wheel-tabs');
+  tabsWrap.innerHTML = Object.keys(WHEEL_GROUPS).map(g =>
+    `<button class="wheel-tab ${g===currentWheelGroup?'active':''}" onclick="switchWheelGroup('${g}')">${g}</button>`
+  ).join('');
+  document.getElementById('wheel-result').classList.remove('show');
+  buildWheel();
+}
+function switchWheelGroup(g){
+  currentWheelGroup = g;
+  currentRotation = 0;
+  document.getElementById('wheel').style.transition = 'none';
+  document.getElementById('wheel').style.transform = 'rotate(0deg)';
+  requestAnimationFrame(()=>{ document.getElementById('wheel').style.transition = 'transform 4s cubic-bezier(.17,.67,.21,1)'; });
+  initWheelScreen();
+}
 function buildWheel(){
-  if(wheelBuilt) return;
   const svg = document.getElementById('wheel');
-  const n = WHEEL_OPTIONS.length;
+  const options = WHEEL_GROUPS[currentWheelGroup];
+  const n = options.length;
   const cx=100, cy=100, r=100;
   let paths = '';
   for(let i=0;i<n;i++){
@@ -559,17 +876,16 @@ function buildWheel(){
     const tx = cx + (r*0.62)*Math.cos(midAngle);
     const ty = cy + (r*0.62)*Math.sin(midAngle);
     const rotDeg = (midAngle*180/Math.PI)+90;
-    paths += `<text x="${tx}" y="${ty}" font-size="7" font-family="Baloo 2, sans-serif" font-weight="700" fill="#5B4636" text-anchor="middle" transform="rotate(${rotDeg} ${tx} ${ty})">${wrapText(WHEEL_OPTIONS[i])}</text>`;
+    paths += `<text x="${tx}" y="${ty}" font-size="6.5" font-family="Baloo 2, sans-serif" font-weight="700" fill="#5B4636" text-anchor="middle" transform="rotate(${rotDeg} ${tx} ${ty})">${wrapText(options[i])}</text>`;
   }
   svg.innerHTML = paths;
-  wheelBuilt = true;
 }
 function wrapText(t){
-  // simple truncate for svg single-line text
   return t.length > 16 ? t.slice(0,15)+'…' : t;
 }
 function spinWheel(){
-  const n = WHEEL_OPTIONS.length;
+  const options = WHEEL_GROUPS[currentWheelGroup];
+  const n = options.length;
   const chosen = Math.floor(Math.random()*n);
   const degPerSlice = 360/n;
   const targetCenter = chosen*degPerSlice + degPerSlice/2;
@@ -580,13 +896,13 @@ function spinWheel(){
   svg.style.transform = `rotate(${currentRotation}deg)`;
   document.getElementById('wheel-result').classList.remove('show');
   setTimeout(()=>{
-    document.getElementById('wheel-result-text').textContent = "💚 " + WHEEL_OPTIONS[chosen];
+    document.getElementById('wheel-result-text').textContent = "💚 " + options[chosen];
     document.getElementById('wheel-result').classList.add('show');
-    addHistory("[Date idea] " + WHEEL_OPTIONS[chosen]);
+    addHistory(`[${currentWheelGroup}] ` + options[chosen]);
   }, 4100);
 }
 
-/* ---------- QUIZ ---------- */
+/* ---------- QUIZ (câu hỏi hiểu nhau) ---------- */
 let quizIndex = 0;
 let quizOrder = [];
 function startQuiz(){
@@ -602,6 +918,120 @@ function nextQuiz(){
   addHistory("[Câu hỏi] " + QUIZ_QUESTIONS[quizOrder[quizIndex]]);
   quizIndex = (quizIndex+1) % QUIZ_QUESTIONS.length;
   renderQuiz();
+}
+
+/* ---------- LOVE COUNTER ---------- */
+const MILESTONES = [
+  { days: 30, label: "Tròn 1 tháng" },
+  { days: 100, label: "Tròn 100 ngày" },
+  { days: 200, label: "Tròn 200 ngày" },
+  { days: 365, label: "Tròn 1 năm" },
+  { days: 500, label: "Tròn 500 ngày" },
+  { days: 730, label: "Tròn 2 năm" },
+  { days: 1000, label: "Tròn 1000 ngày" },
+  { days: 1095, label: "Tròn 3 năm" }
+];
+function getLoveDate(){
+  return localStorage.getItem('trinhiu_lovedate');
+}
+function saveLoveDate(){
+  const input = document.getElementById('counter-date-input').value;
+  if(!input){ return; }
+  localStorage.setItem('trinhiu_lovedate', input);
+  renderCounter();
+}
+function editLoveDate(){
+  document.getElementById('counter-setup-box').style.display = 'block';
+  document.getElementById('counter-result-box').style.display = 'none';
+  const existing = getLoveDate();
+  if(existing) document.getElementById('counter-date-input').value = existing;
+}
+function initCounterScreen(){
+  const existing = getLoveDate();
+  if(existing){
+    renderCounter();
+  } else {
+    document.getElementById('counter-setup-box').style.display = 'block';
+    document.getElementById('counter-result-box').style.display = 'none';
+  }
+}
+function renderCounter(){
+  const dateStr = getLoveDate();
+  if(!dateStr) return;
+  const start = new Date(dateStr + 'T00:00:00');
+  const now = new Date();
+  const diffDays = Math.floor((now - start) / 86400000);
+
+  document.getElementById('counter-setup-box').style.display = 'none';
+  document.getElementById('counter-result-box').style.display = 'block';
+  document.getElementById('counter-days').textContent = diffDays >= 0 ? diffDays : 0;
+  document.getElementById('counter-since').textContent = "kể từ ngày " + start.toLocaleDateString('vi-VN');
+
+  const list = document.getElementById('milestone-list');
+  let nextShown = false;
+  list.innerHTML = MILESTONES.map(m => {
+    const done = diffDays >= m.days;
+    const isNext = !done && !nextShown;
+    if(isNext) nextShown = true;
+    const cls = done ? 'done' : (isNext ? 'next' : '');
+    const rightText = done ? '✔ đã qua' : (isNext ? `còn ${m.days - diffDays} ngày` : `ngày thứ ${m.days}`);
+    return `<div class="milestone-row ${cls}"><span>${m.label}</span><span>${rightText}</span></div>`;
+  }).join('');
+}
+
+/* ---------- LOVE LANGUAGE QUIZ ---------- */
+let llIndex = 0;
+let llScores = {};
+function startLoveLang(){
+  llIndex = 0;
+  llScores = { words:0, acts:0, gifts:0, time:0, touch:0 };
+  document.getElementById('ll-quiz-box').style.display = 'block';
+  document.getElementById('ll-result-box').style.display = 'none';
+  renderLLQuestion();
+}
+function renderLLQuestion(){
+  const q = LL_QUESTIONS[llIndex];
+  document.getElementById('ll-progress').textContent = `Câu ${llIndex+1} / ${LL_QUESTIONS.length}`;
+  document.getElementById('ll-question').textContent = q.q;
+  document.getElementById('ll-options').innerHTML = q.opts.map((o,i) =>
+    `<button class="ll-option" onclick="answerLL('${o.lang}')">${o.t}</button>`
+  ).join('');
+}
+function answerLL(lang){
+  llScores[lang] = (llScores[lang]||0) + 1;
+  llIndex++;
+  if(llIndex < LL_QUESTIONS.length){
+    renderLLQuestion();
+  } else {
+    showLLResult();
+  }
+}
+function showLLResult(){
+  document.getElementById('ll-quiz-box').style.display = 'none';
+  document.getElementById('ll-result-box').style.display = 'block';
+
+  let topLang = 'words', topScore = -1;
+  for(const k in llScores){
+    if(llScores[k] > topScore){ topScore = llScores[k]; topLang = k; }
+  }
+  const info = LL_INFO[topLang];
+  document.getElementById('ll-result-icon').textContent = info.icon;
+  document.getElementById('ll-result-name').textContent = info.name;
+  document.getElementById('ll-result-desc').textContent = info.desc;
+
+  const total = LL_QUESTIONS.length;
+  const order = ['words','acts','gifts','time','touch'];
+  document.getElementById('ll-bars').innerHTML = order.map(k => {
+    const pct = Math.round((llScores[k]/total)*100);
+    return `
+      <div class="ll-bar-row">
+        <div class="ll-bar-label"><span>${LL_INFO[k].icon} ${LL_INFO[k].name.split('(')[0].trim()}</span><span>${pct}%</span></div>
+        <div class="ll-bar-track"><div class="ll-bar-fill" style="width:${pct}%"></div></div>
+      </div>
+    `;
+  }).join('');
+
+  addHistory(`[Love Language] Kết quả: ${info.name}`);
 }
 </script>
 </body>

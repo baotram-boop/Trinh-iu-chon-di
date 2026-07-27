@@ -454,7 +454,7 @@
 </head>
 <body>
 <div class="phone">
-  <div class="eyebrow">Dành cho hai đứa mình</div>
+  <div class="eyebrow">Welcome to em Tram'shop</div>
   <h1 class="title">TRỊNH IU<br>CHỌN ĐI 💗</h1>
 
   <!-- MAIN MENU -->
@@ -462,7 +462,7 @@
     <div class="card">
       <button class="menu-btn" onclick="showScreen('advice')">
         LỜI KHUYÊN HÔM NAY
-        <span class="sub">1 câu mỗi ngày cho cả hai</span>
+        <span class="sub">1 câu mỗi ngày nhá</span>
       </button>
       <button class="menu-btn" onclick="showScreen('history')">
         LỜI KHUYÊN ĐÃ NHẬN
@@ -470,11 +470,11 @@
       </button>
       <button class="menu-btn" onclick="showScreen('draw')">
         RÚT BÀI MAY MẮN
-        <span class="sub">bốc 1 thử thách ngẫu nhiên</span>
+        <span class="sub">rút 1 thử thách ngẫu nhiên</span>
       </button>
       <button class="menu-btn" onclick="showScreen('wheel')">
         VÒNG QUAY HẸN HÒ
-        <span class="sub">ăn gì / đi đâu / làm gì cuối tuần</span>
+        <span class="sub">tụi mình ăn gì / đi đâu / làm gì cuối tuần</span>
       </button>
       <button class="menu-btn" onclick="showScreen('quiz'); startQuiz();">
         CÂU HỎI HIỂU NHAU
@@ -482,11 +482,11 @@
       </button>
       <button class="menu-btn" onclick="showScreen('counter')">
         ĐẾM NGÀY YÊU
-        <span class="sub">số ngày bên nhau + mốc kỷ niệm</span>
+        <span class="sub">số ngày tụi mình bên nhau + mốc kỷ niệm</span>
       </button>
       <button class="menu-btn" onclick="showScreen('lovelang'); startLoveLang();">
         LOVE LANGUAGE QUIZ
-        <span class="sub">tìm ngôn ngữ tình yêu của mỗi người</span>
+        <span class="sub">tìm ngôn ngữ tình yêu của anh và em</span>
       </button>
     </div>
   </div>
@@ -532,7 +532,7 @@
         <div class="pointer"></div>
         <svg id="wheel" viewBox="0 0 200 200"></svg>
       </div>
-      <button class="action-btn" onclick="spinWheel()">QUAY NGAY 🎡</button>
+      <button class="action-btn" onclick="spinWheel()">QUAY LIỀN ĐI 🎡</button>
       <div class="wheel-result" id="wheel-result">
         <div class="txt" id="wheel-result-text"></div>
       </div>
@@ -646,16 +646,16 @@ const DRAW_CARDS = [
 /* Vòng quay hẹn hò — chia theo nhóm */
 const WHEEL_GROUPS = {
   "Ăn gì": [
-    "Lẩu cay tại nhà", "Buffet nướng", "Món Nhật (sushi/ramen)", "Quán mì cay mới mở",
-    "Đồ chay thử cho lạ", "Đặt món chưa từng ăn", "Nấu Ý tại nhà (pasta)", "Ăn vặt lề đường"
+    "Mì cay", "Buffet nướng", "Ốc", "Gà rán", "Cháo gà", "Bún bò", "Mì bột ngọt",
+    "Món chay", "Mì ý A Hoài", "Bún riêu", "Bún mắm", "Lẩu gà lá é", "Món Thái", "Dimsum", "Pizza"
   ],
   "Đi đâu": [
-    "Cafe view đẹp mới mở", "Công viên buổi tối", "Bảo tàng / triển lãm", "Phố đi bộ cuối tuần",
-    "Rạp chiếu phim", "Chợ đêm", "Quán sách yên tĩnh", "Ra ngoại thành đổi gió"
+    "Ăn sáng cà hê", "Công viên buổi tối", "Workshop", "Bơi bơi", "Cà hê mèo", "Quán cà hê board game", "Massage", "Coi kịch/accoustic",
+    "Xem phim", "Siêu thị mua sắm", "Picnic đổi gió", "Karaoke", "Đi nhạo"
   ],
   "Làm gì": [
-    "Xem phim tại nhà cả buổi", "Chơi board game", "Nấu ăn cùng nhau", "Đạp xe buổi sáng",
-    "Chơi game đối kháng", "Vẽ/tô màu cùng nhau", "Xem lại ảnh cũ", "Tự tổ chức 'date night' tại nhà"
+    "Xem phim tại nhà", "Chơi board game", "Nấu ăn cùng nhau", "Chọn một chữ cái rồi ăn, đi và chơi theo chữ đó",
+    "Chơi game đối kháng", "Vẽ/tô màu cùng nhau", "Tự tổ chức 'concert' tại nhà", "Chụp ảnh cho nhau"
   ]
 };
 const WHEEL_COLORS = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF"];
@@ -677,85 +677,76 @@ const QUIZ_QUESTIONS = [
 /* Love language quiz data */
 const LL_QUESTIONS = [
   {
-    q: "Khi người iu làm điều gì đó khiến bạn thấy hạnh phúc nhất, đó thường là...",
+    q: "Khi người iu làm điều gì đó khiến ní thấy hạnh phúc nhất, đó thường là...",
     opts: [
       { t:"Họ nói 'anh/em tự hào về em/anh'", lang:"words" },
-      { t:"Họ chủ động giúp mình việc gì đó mà không cần nhờ", lang:"acts" },
-      { t:"Họ tặng một món quà nhỏ dù chẳng dịp gì", lang:"gifts" },
-      { t:"Họ dành cả buổi tối chỉ ở bên mình, không làm gì khác", lang:"time" }
+      { t:"Họ chủ động giúp ní việc gì đó mà không cần nhờ", lang:"acts" },
+      { t:"Họ tặng một món quà nhỏ dù chẳng cần dịp gì", lang:"gifts" },
+      { t:"Họ dành cả buổi hẹn chỉ ở bên ní, hong làm việc riêng", lang:"time" }
     ]
   },
   {
-    q: "Nếu có một ngày mệt mỏi, bạn muốn người iu...",
+    q: "Nếu có một ngày mệt mỏi, ní muốn người iu...",
     opts: [
-      { t:"Nhắn tin động viên vài câu ấm áp", lang:"words" },
-      { t:"Âm thầm lo giúp vài việc để mình đỡ mệt hơn", lang:"acts" },
-      { t:"Mang cho mình món gì đó mình thích", lang:"gifts" },
-      { t:"Ngồi cạnh mình, không cần nói gì nhiều", lang:"touch" }
+      { t:"Nhắn tin động viên quan tâm ní", lang:"words" },
+      { t:"Đừng lại gần ní, hãy để ní yên", lang:"acts" },
+      { t:"Mua đồ ăn cho ní", lang:"gifts" },
+      { t:"Gặp nhau và ngồi cạnh ní, hong cần nói gì nhiều", lang:"touch" }
     ]
   },
   {
-    q: "Bạn dễ tổn thương nhất khi người iu...",
+    q: "Ní dễ tổn thương nhất khi người iu...",
     opts: [
-      { t:"Nói những lời thờ ơ hoặc chê bai", lang:"words" },
-      { t:"Hứa giúp việc gì đó rồi không làm", lang:"acts" },
+      { t:"Nói những lời thờ ơ nguội lạnh hoặc chê bai", lang:"words" },
+      { t:"Hứa giúp việc gì đó rồi hong làm", lang:"acts" },
       { t:"Quên những dịp quan trọng", lang:"gifts" },
-      { t:"Luôn bận rộn, ít thời gian dành cho mình", lang:"time" }
+      { t:"Luôn bận rộn, ít thời gian dành cho ní", lang:"time" }
     ]
   },
   {
-    q: "Với bạn, một buổi hẹn hò lý tưởng là...",
+    q: "Với ní, một buổi hẹn hò lý tưởng là...",
     opts: [
-      { t:"Cả hai nói chuyện thật lòng, chia sẻ nhiều điều", lang:"words" },
-      { t:"Cùng nhau làm một việc gì đó, ví dụ nấu ăn chung", lang:"acts" },
+      { t:"Được tâm sự thật lòng và nghe những lời yêu thương", lang:"words" },
+      { t:"Cùng nhau làm một điều gì đó thật vui, ví dụ nấu ăn chung", lang:"acts" },
       { t:"Có một bất ngờ nho nhỏ trong buổi hẹn", lang:"gifts" },
-      { t:"Chỉ cần ở cạnh nhau trọn vẹn, không bị gián đoạn", lang:"time" }
+      { t:"Ở cạnh nhau trọn vẹn và không bị gián đoạn", lang:"time" }
     ]
   },
   {
-    q: "Bạn thể hiện tình cảm với người iu chủ yếu bằng cách...",
+    q: "Ní thể hiện tình cảm với người iu chủ yếu bằng cách...",
     opts: [
-      { t:"Nói ra cảm xúc, khen ngợi thường xuyên", lang:"words" },
-      { t:"Làm giúp những việc lặt vặt cho họ", lang:"acts" },
-      { t:"Mua/ làm quà tặng bất ngờ", lang:"gifts" },
-      { t:"Nắm tay, ôm, những cử chỉ thân mật", lang:"touch" }
+      { t:"Nói lời yêu thương và thường xuyên dành lời khen cho họ", lang:"words" },
+      { t:"Ít nói lời ngọt ngào nhưng chủ động giúp đỡ và chăm sóc họ từ những việc nhỏ nhất"", lang:"acts" },
+      { t:"Luôn nhớ những điều người iu thích để chọn quà đúng ý", lang:"gifts" },
+      { t:"Skinship (nắm tay, ôm, thơm, cho họ cảm giác ní luôn hiện diện)", lang:"touch" }
     ]
   },
   {
     q: "Điều bạn nhớ lâu nhất về người iu thường là...",
     opts: [
-      { t:"Một câu nói khiến mình xúc động", lang:"words" },
-      { t:"Một lần họ giúp mình lúc khó khăn", lang:"acts" },
-      { t:"Một món quà ý nghĩa họ tặng", lang:"gifts" },
-      { t:"Một khoảnh khắc chỉ có hai người bên nhau", lang:"time" }
+      { t:"Một lời động viên đúng lúc ní cần nhất", lang:"words" },
+      { t:"Một hành động khiến ní cảm thấy được yêu thương", lang:"acts" },
+      { t:"Một món quà họ tự tay chuẩn bị cho ní", lang:"gifts" },
+      { t:"Một khoảnh khắc nào đó cả 2 ngồi tâm sự", lang:"time" }
     ]
   },
   {
-    q: "Khi giận nhau, điều gì khiến bạn nguôi giận nhanh nhất?",
+    q: "Khi giận nhau, điều gì khiến ní nguôi giận nhanh nhất?",
     opts: [
-      { t:"Người iu chủ động xin lỗi bằng lời nói chân thành", lang:"words" },
-      { t:"Người iu hành động sửa sai ngay, không chỉ nói suông", lang:"acts" },
-      { t:"Một món quà nhỏ mang tính hòa giải", lang:"gifts" },
-      { t:"Một cái ôm, nắm tay làm dịu lại không khí", lang:"touch" }
-    ]
-  },
-  {
-    q: "Bạn thấy gắn kết với người iu nhất khi...",
-    opts: [
-      { t:"Được nghe họ nói về cảm xúc, suy nghĩ thật", lang:"words" },
-      { t:"Cùng làm chung một việc, hỗ trợ nhau", lang:"acts" },
-      { t:"Nhận được điều gì đó thể hiện họ có nghĩ đến mình", lang:"gifts" },
-      { t:"Có thời gian chất lượng riêng cho hai người", lang:"time" }
+      { t:"Người iu công nhận cảm xúc của ní, nói ra cảm xúc và cùng ní tháo gỡ", lang:"words" },
+      { t:"Người iu thay đổi hành động để chuyện đó không lặp lại", lang:"acts" },
+      { t:"Một món quà nhỏ thay cho lời muốn làm hòa", lang:"gifts" },
+      { t:"Dù giận nhau nhưng hong lạnh nhạt, vẫn làm ní cảm giác được đây chỉ là bất hoà tạm thời, chúng mình vẫn iu nhau mà", lang:"touch" }
     ]
   }
 ];
 
 const LL_INFO = {
-  words: { icon:"💬", name:"Lời Khẳng Định (Words of Affirmation)", desc:"Bạn cảm nhận tình yêu rõ nhất qua lời nói — một câu khen, một lời động viên, một câu 'anh/em yêu em/anh' đúng lúc có giá trị rất lớn với bạn." },
-  acts: { icon:"🛠️", name:"Hành Động Chăm Sóc (Acts of Service)", desc:"Với bạn, hành động nói lên tất cả. Khi người iu chủ động giúp đỡ, làm việc gì đó vì bạn, đó chính là cách họ nói 'anh/em yêu em/anh' rõ ràng nhất." },
-  gifts: { icon:"🎁", name:"Quà Tặng (Receiving Gifts)", desc:"Không phải vì giá trị món quà, mà vì bạn cảm nhận được sự quan tâm và suy nghĩ đằng sau nó. Một món quà nhỏ đúng lúc khiến bạn thấy được yêu." },
-  time: { icon:"⏳", name:"Thời Gian Chất Lượng (Quality Time)", desc:"Bạn trân trọng nhất là sự hiện diện trọn vẹn — không điện thoại, không xao nhãng, chỉ có hai người thật sự ở bên nhau." },
-  touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với bạn nhiều hơn cả ngàn lời nói." }
+  words: { icon:"💬", name:"Lời Khẳng Định (Words of Affirmation)", desc:"Ní cảm nhận tình yêu rõ nhất qua lời nói — một câu khen, một lời động viên, một câu 'anh/em yêu em/anh' đúng lúc có giá trị rất lớn với ní đó." },
+  acts: { icon:"🛠️", name:"Hành Động Chăm Sóc (Acts of Service)", desc:"Với ní, hành động nói lên tất cả. Khi người iu chủ động giúp đỡ, làm việc gì đó vì ní, đó chính là cách họ nói 'anh/em yêu em/anh' rõ ràng nhất." },
+  gifts: { icon:"🎁", name:"Quà Tặng (Receiving Gifts)", desc:"Không phải vì giá trị món quà, mà vì ní cảm nhận được sự quan tâm và suy nghĩ đằng sau nó. Một món quà nhỏ đúng lúc khiến ní thấy được iu." },
+  time: { icon:"⏳", name:"Thời Gian Chất Lượng (Quality Time)", desc:"Ní trân trọng nhất là sự hiện diện trọn vẹn — không điện thoại, không xao nhãng, chỉ có hai người thật sự ở bên nhau thoy." },
+  touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với ní nhiều hơn cả ngàn lời nói." }
 };
 
 /* ---------- STATE (lưu bằng localStorage) ---------- */

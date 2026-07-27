@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thái iu chọn đi 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF7E8;
+    --cream-deep:#FBEFD2;
+    --pink-soft:#F7C6D9;
+    --pink:#EE7FA6;
+    --pink-deep:#D94C7B;
+    --sage:#8FAE8B;
+    --sage-deep:#5F8360;
+    --brown:#5B4636;
+    --sky:#CFE3EF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Nunito', sans-serif;
+    color:var(--brown);
+    background:
+      radial-gradient(circle at 15% 8%, #E4EEF6 0%, transparent 45%),
+      linear-gradient(180deg, var(--sky) 0%, var(--cream) 35%);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    overflow-x:hidden;
+  }
+  .phone{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    position:relative;
+    padding:28px 20px 60px;
+  }
+  .eyebrow{
+    text-align:center;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--sage-deep);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  h1.title{
+    font-family:'Baloo 2', sans-serif;
+    text-align:center;
+    color:var(--pink-deep);
+    font-size:34px;
+    font-weight:800;
+    line-height:1.15;
+    margin:0 0 24px;
+    text-shadow: 2px 2px 0px rgba(238,127,166,0.18);
+  }
+  .card{
+    background:var(--cream-deep);
+    border-radius:32px 32px 20px 20px;
+    box-shadow: 0 12px 30px -10px rgba(217,76,123,0.25);
+    padding:30px 22px 26px;
+    position:relative;
+  }
+  .menu-btn{
+    display:block;
+    width:100%;
+    padding:16px 18px;
+    margin-bottom:14px;
+    border-radius:999px;
+    border:2px solid var(--pink);
+    background:#fff;
+    color:var(--pink-deep);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:0.4px;
+    cursor:pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    text-align:center;
+  }
+  .menu-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px -6px rgba(238,127,166,0.5);
+    background:var(--pink-soft);
+  }
+  .menu-btn:active{ transform:translateY(0px) scale(0.98); }
+  .menu-btn .sub{
+    display:block;
+    font-family:'Nunito', sans-serif;
+    font-weight:600;
+    font-size:11.5px;
+    color:var(--sage-deep);
+    margin-top:2px;
+    letter-spacing:0.2px;
+  }
+
+  .screen{ display:none; animation: fadeIn .35s ease; }
+  .screen.active{ display:block; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .back-btn{
+    background:none;
+    border:none;
+    color:var(--sage-deep);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    padding:0 0 14px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+
+  /* Lời khuyên hôm nay */
+  .advice-box{
+    background:#fff;
+    border-radius:20px;
+    padding:26px 20px;
+    text-align:center;
+    border:2px dashed var(--pink);
+    min-height:140px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .advice-text{
+    font-family:'Baloo 2', sans-serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--brown);
+    line-height:1.5;
+  }
+  .date-tag{
+    text-align:center;
+    font-size:12px;
+    color:var(--sage-deep);
+    font-weight:700;
+    margin:10px 0 16px;
+  }
+  .action-btn{
+    display:block;
+    width:100%;
+    padding:14px;
+    border-radius:999px;
+    border:none;
+    background:var(--pink-deep);
+    color:#fff;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    margin-top:14px;
+  }
+  .action-btn:active{ transform:scale(0.98); }
+  .action-btn.secondary{
+    background:transparent;
+    color:var(--pink-deep);
+    border:2px solid var(--pink-deep);
+  }
+
+  /* History list */
+  .history-item{
+    background:#fff;
+    border-radius:16px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    border-left:5px solid var(--sage);
+    font-size:14px;
+    font-weight:600;
+  }
+  .history-item .hdate{
+    display:block;
+    font-size:11px;
+    color:var(--sage-deep);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .empty-msg{
+    text-align:center;
+    color:var(--sage-deep);
+    font-weight:700;
+    font-family:'Baloo 2', sans-serif;
+    padding:30px 10px;
+  }
+
+  /* Card draw */
+  .card-table{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+    margin:10px 0 8px;
+  }
+  .mini-card{
+    aspect-ratio:2/3;
+    background:linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    color:#fff;
+    font-size:22px;
+    box-shadow:0 6px 12px -6px rgba(217,76,123,0.5);
+    transition: transform .2s ease;
+    user-select:none;
+  }
+  .mini-card:hover{ transform:translateY(-4px) rotate(-2deg); }
+  .mini-card.picked{ opacity:0.25; pointer-events:none; }
+  .result-card{
+    background:#fff;
+    border-radius:20px;
+    padding:24px 20px;
+    text-align:center;
+    border:2px solid var(--pink);
+    margin-top:14px;
+  }
+  .result-card .icon{ font-size:34px; margin-bottom:8px; display:block;}
+  .result-card .txt{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:16px;
+  }
+
+  /* Wheel */
+  .wheel-wrap{
+    display:flex;
+    justify-content:center;
+    margin:6px 0 18px;
+    position:relative;
+  }
+  .pointer{
+    position:absolute;
+    top:-6px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0; height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:18px solid var(--pink-deep);
+    z-index:5;
+  }
+  #wheel{
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    transition: transform 4s cubic-bezier(.17,.67,.21,1);
+    box-shadow:0 10px 24px -8px rgba(217,76,123,0.4);
+    border:6px solid #fff;
+  }
+  .wheel-result{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    border:2px solid var(--sage);
+    display:none;
+  }
+  .wheel-result.show{ display:block; }
+  .wheel-result .txt{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--sage-deep);
+  }
+
+  /* Quiz */
+  .quiz-progress{
+    text-align:center;
+    font-size:12px;
+    font-weight:700;
+    color:var(--sage-deep);
+    margin-bottom:10px;
+  }
+  .quiz-q{
+    background:#fff;
+    border-radius:20px;
+    padding:24px 20px;
+    text-align:center;
+    border:2px dashed var(--sage);
+    min-height:110px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:600;
+    font-size:16px;
+  }
+
+  .decor{
+    position:absolute;
+    font-size:20px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="eyebrow">Dành cho hai đứa mình</div>
+  <h1 class="title">THÁI IU<br>CHỌN ĐI 💗</h1>
+
+  <!-- MAIN MENU -->
+  <div id="screen-menu" class="screen active">
+    <div class="card">
+      <button class="menu-btn" onclick="showScreen('advice')">
+        LỜI KHUYÊN HÔM NAY
+        <span class="sub">1 câu mỗi ngày cho cả hai</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('history')">
+        LỜI KHUYÊN ĐÃ NHẬN
+        <span class="sub">xem lại những gì đã đọc</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('draw')">
+        RÚT BÀI MAY MẮN
+        <span class="sub">bốc 1 thử thách ngẫu nhiên</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('wheel')">
+        VÒNG QUAY HẸN HÒ
+        <span class="sub">quay ra 1 date idea cuối tuần</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('quiz'); startQuiz();">
+        CÂU HỎI HIỂU NHAU
+        <span class="sub">1 câu mỗi lần, trả lời cùng nhau</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ADVICE OF THE DAY -->
+  <div id="screen-advice" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <div class="date-tag" id="advice-date"></div>
+      <div class="advice-box">
+        <div class="advice-text" id="advice-text">Đang tải...</div>
+      </div>
+      <button class="action-btn" onclick="newAdvice()">RÚT LỜI KHUYÊN KHÁC 🔁</button>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="screen-history" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <div id="history-list"></div>
+    </div>
+  </div>
+
+  <!-- CARD DRAW -->
+  <div id="screen-draw" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <div class="date-tag">Chọn 1 lá bài bất kỳ</div>
+      <div class="card-table" id="card-table"></div>
+      <div id="draw-result"></div>
+      <button class="action-btn secondary" onclick="resetDraw()">TRÁO BÀI LẠI 🔀</button>
+    </div>
+  </div>
+
+  <!-- WHEEL -->
+  <div id="screen-wheel" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <div class="date-tag">Quay để chọn hoạt động cuối tuần</div>
+      <div class="wheel-wrap">
+        <div class="pointer"></div>
+        <svg id="wheel" viewBox="0 0 200 200"></svg>
+      </div>
+      <button class="action-btn" onclick="spinWheel()">QUAY NGAY 🎡</button>
+      <div class="wheel-result" id="wheel-result">
+        <div class="txt" id="wheel-result-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="screen-quiz" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <div class="quiz-progress" id="quiz-progress"></div>
+      <div class="quiz-q" id="quiz-q"></div>
+      <button class="action-btn" onclick="nextQuiz()">CÂU TIẾP THEO ➜</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ---------- DATA (mẫu gợi ý, có thể tự chỉnh sửa) ---------- */
+const ADVICE_LIST = [
+  "Hôm nay hãy khen người iu một điều thật cụ thể, đừng chỉ nói 'em/anh đẹp quá' chung chung.",
+  "Khi cãi nhau, thử dừng lại 5 giây trước khi trả lời — nhiều khi câu đầu tiên không phải câu nên nói.",
+  "Gửi cho người iu một tin nhắn 'nhớ mỗi vậy thôi' vào giữa giờ làm việc, không cần lý do.",
+  "Hỏi người iu một ngày của họ đã qua như thế nào, và thực sự lắng nghe hết câu trả lời.",
+  "Đừng so sánh mối quan hệ của mình với ai khác — mỗi cặp đôi có nhịp riêng.",
+  "Thử làm một việc nhỏ mà người iu thích nhưng bạn không thích lắm, chỉ vì họ vui.",
+  "Nói lời xin lỗi trước không phải là thua, mà là ai đó phải là người trưởng thành trước.",
+  "Dành 10 phút không điện thoại, chỉ ngồi nói chuyện với nhau hôm nay.",
+  "Nhắc lại một kỷ niệm vui giữa hai người, để nhắc nhau nhớ vì sao mình chọn nhau.",
+  "Đừng im lặng khi buồn quá lâu — nói ra, dù chỉ một câu ngắn, còn hơn để bụng.",
+  "Hỏi người iu: 'Dạo này em/anh cần gì ở anh/em nhiều hơn không?'",
+  "Chăm sóc bản thân tốt cũng là một cách yêu người iu — đừng quên điều đó.",
+  "Thử nấu chung một món mới cuối tuần này, dù có thể sẽ hơi lộn xộn.",
+  "Nếu có điều gì đang khó chịu trong lòng, nói ra sớm, đừng để nó tích tụ thành giận không rõ lý do.",
+  "Gửi một tấm ảnh cũ kèm câu 'lúc đó vui thật' — nhắc nhau về hành trình đã đi.",
+  "Học cách chấp nhận người iu không hoàn hảo, giống như họ cũng đang chấp nhận điều đó ở bạn.",
+  "Đặt điện thoại xuống trong bữa ăn hôm nay, để trọn vẹn cho nhau.",
+  "Nói 'cảm ơn' với những điều nhỏ người iu làm mà bạn hay coi là hiển nhiên.",
+  "Thử hỏi han về gia đình, bạn bè của người iu — quan tâm vòng tròn của họ cũng là quan tâm họ.",
+  "Đừng ngại thể hiện tình cảm trước mặt người khác một chút, nếu cả hai đều thoải mái."
+];
+
+const DRAW_CARDS = [
+  { icon:"💌", text:"Viết một tin nhắn dài kể lý do bạn thích người iu, gửi bất ngờ tối nay." },
+  { icon:"🍜", text:"Nấu hoặc order món ăn yêu thích của người iu mà không cần họ nhắc." },
+  { icon:"📸", text:"Chụp chung một tấm ảnh 'chill' không cần chỉnh sửa, lưu làm kỷ niệm." },
+  { icon:"🎬", text:"Xem chung một bộ phim người iu đã rủ mà bạn từng lỡ hẹn." },
+  { icon:"🕯️", text:"Dành 15 phút chỉ để hỏi về một điều người iu đang lo lắng dạo này." },
+  { icon:"🎁", text:"Tặng người iu một món quà nhỏ không nhân dịp gì cả." },
+  { icon:"🚶", text:"Rủ nhau đi dạo 20 phút không mang điện thoại." },
+  { icon:"📝", text:"Viết ra 3 điều bạn biết ơn về người iu, đọc cho họ nghe." },
+  { icon:"☕", text:"Pha một ly nước/cà phê mang tận nơi cho người iu hôm nay." },
+  { icon:"🎵", text:"Gửi một bài hát khiến bạn nhớ đến người iu, kèm lý do." },
+  { icon:"🧹", text:"Chủ động làm một việc nhà mà thường người iu hay làm." },
+  { icon:"💬", text:"Hỏi người iu: 'Có điều gì về anh/em mà em/anh muốn anh/em thay đổi không?' và lắng nghe không phản bác." },
+  { icon:"🌙", text:"Gọi video 5 phút trước khi ngủ dù cả ngày đã nhắn tin nhiều." },
+  { icon:"🎨", text:"Cùng nhau lên kế hoạch cho một chuyến đi (dù chưa chắc đi được ngay)." },
+  { icon:"🫶", text:"Ôm người iu 10 giây không nói gì, chỉ ôm thôi." }
+];
+
+const WHEEL_OPTIONS = [
+  "Xem phim tại nhà + đồ ăn vặt",
+  "Đi cafe quán mới chưa từng thử",
+  "Nấu ăn cùng nhau tại nhà",
+  "Đi dạo công viên buổi tối",
+  "Chơi board game / game đối kháng",
+  "Đi ăn món cả hai chưa từng ăn",
+  "Đạp xe/đi bộ buổi sáng sớm",
+  "Xem lại ảnh cũ và kể chuyện"
+];
+const WHEEL_COLORS = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF"];
+
+const QUIZ_QUESTIONS = [
+  "Điều gì khiến bạn cảm thấy được yêu thương nhất: lời nói, hành động, quà tặng, thời gian, hay đụng chạm thân mật?",
+  "Một kỷ niệm nào giữa hai đứa mình mà bạn nhớ nhất, và vì sao?",
+  "Nếu được đi du lịch cùng nhau bất kỳ đâu, bạn chọn nơi nào?",
+  "Có điều gì bạn chưa từng nói với người iu nhưng muốn nói không?",
+  "Bạn nghĩ hai đứa mình hợp nhau nhất ở điểm nào?",
+  "Nếu phải miêu tả người iu bằng 3 từ, bạn chọn từ nào?",
+  "Điều gì bạn học được từ người iu kể từ khi yêu nhau?",
+  "Bạn muốn hai đứa mình sẽ như thế nào trong 5 năm tới?",
+  "Có thói quen nào của người iu khiến bạn thấy dễ thương không?",
+  "Nếu có một ngày nghỉ hoàn hảo cùng nhau, ngày đó sẽ trông như thế nào?"
+];
+
+/* ---------- STATE (lưu bằng localStorage) ---------- */
+function getHistory(){
+  try{ return JSON.parse(localStorage.getItem('thaiiu_history') || '[]'); }
+  catch(e){ return []; }
+}
+function saveHistory(list){
+  localStorage.setItem('thaiiu_history', JSON.stringify(list));
+}
+function addHistory(text){
+  const list = getHistory();
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+  list.unshift({ date: dateStr, text: text });
+  saveHistory(list.slice(0,50));
+}
+
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  if(name==='advice') loadTodayAdvice();
+  if(name==='history') renderHistory();
+  if(name==='draw') resetDraw();
+  if(name==='wheel') buildWheel();
+}
+
+/* ---------- ADVICE ---------- */
+function dayIndexSeed(){
+  const d = new Date();
+  const start = new Date(d.getFullYear(),0,0);
+  const diff = d - start;
+  return Math.floor(diff / 86400000);
+}
+function loadTodayAdvice(customIndex){
+  const idx = (typeof customIndex === 'number') ? customIndex : (dayIndexSeed() % ADVICE_LIST.length);
+  const text = ADVICE_LIST[idx];
+  document.getElementById('advice-text').textContent = text;
+  document.getElementById('advice-date').textContent = new Date().toLocaleDateString('vi-VN', {weekday:'long', day:'2-digit', month:'2-digit'});
+  addHistory(text);
+}
+function newAdvice(){
+  const idx = Math.floor(Math.random()*ADVICE_LIST.length);
+  loadTodayAdvice(idx);
+}
+
+/* ---------- HISTORY ---------- */
+function renderHistory(){
+  const list = getHistory();
+  const container = document.getElementById('history-list');
+  if(list.length===0){
+    container.innerHTML = '<div class="empty-msg">Chưa có lời khuyên nào được nhận 🌱<br>Bấm "Lời khuyên hôm nay" để bắt đầu nhé!</div>';
+    return;
+  }
+  container.innerHTML = list.map(item => `
+    <div class="history-item">
+      <span class="hdate">${item.date}</span>
+      ${item.text}
+    </div>
+  `).join('');
+}
+
+/* ---------- CARD DRAW ---------- */
+let drawOrder = [];
+function resetDraw(){
+  drawOrder = [...Array(DRAW_CARDS.length).keys()].sort(()=>Math.random()-0.5).slice(0,6);
+  const table = document.getElementById('card-table');
+  table.innerHTML = drawOrder.map((cardIdx,i)=>`<div class="mini-card" data-idx="${cardIdx}" onclick="pickCard(this)">🎴</div>`).join('');
+  document.getElementById('draw-result').innerHTML = '';
+}
+function pickCard(el){
+  document.querySelectorAll('.mini-card').forEach(c=>c.classList.add('picked'));
+  const idx = el.getAttribute('data-idx');
+  const card = DRAW_CARDS[idx];
+  document.getElementById('draw-result').innerHTML = `
+    <div class="result-card">
+      <span class="icon">${card.icon}</span>
+      <div class="txt">${card.text}</div>
+    </div>
+  `;
+  addHistory("[Thử thách] " + card.text);
+}
+
+/* ---------- WHEEL ---------- */
+let wheelBuilt = false;
+let currentRotation = 0;
+function buildWheel(){
+  if(wheelBuilt) return;
+  const svg = document.getElementById('wheel');
+  const n = WHEEL_OPTIONS.length;
+  const cx=100, cy=100, r=100;
+  let paths = '';
+  for(let i=0;i<n;i++){
+    const startAngle = (i/n)*2*Math.PI - Math.PI/2;
+    const endAngle = ((i+1)/n)*2*Math.PI - Math.PI/2;
+    const x1 = cx + r*Math.cos(startAngle);
+    const y1 = cy + r*Math.sin(startAngle);
+    const x2 = cx + r*Math.cos(endAngle);
+    const y2 = cy + r*Math.sin(endAngle);
+    paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 0,1 ${x2},${y2} Z" fill="${WHEEL_COLORS[i % WHEEL_COLORS.length]}" stroke="#fff" stroke-width="1.5"/>`;
+    const midAngle = (startAngle+endAngle)/2;
+    const tx = cx + (r*0.62)*Math.cos(midAngle);
+    const ty = cy + (r*0.62)*Math.sin(midAngle);
+    const rotDeg = (midAngle*180/Math.PI)+90;
+    paths += `<text x="${tx}" y="${ty}" font-size="7" font-family="Baloo 2, sans-serif" font-weight="700" fill="#5B4636" text-anchor="middle" transform="rotate(${rotDeg} ${tx} ${ty})">${wrapText(WHEEL_OPTIONS[i])}</text>`;
+  }
+  svg.innerHTML = paths;
+  wheelBuilt = true;
+}
+function wrapText(t){
+  // simple truncate for svg single-line text
+  return t.length > 16 ? t.slice(0,15)+'…' : t;
+}
+function spinWheel(){
+  const n = WHEEL_OPTIONS.length;
+  const chosen = Math.floor(Math.random()*n);
+  const degPerSlice = 360/n;
+  const targetCenter = chosen*degPerSlice + degPerSlice/2;
+  const spins = 5*360;
+  const finalRotation = spins + (360 - targetCenter);
+  currentRotation += finalRotation;
+  const svg = document.getElementById('wheel');
+  svg.style.transform = `rotate(${currentRotation}deg)`;
+  document.getElementById('wheel-result').classList.remove('show');
+  setTimeout(()=>{
+    document.getElementById('wheel-result-text').textContent = "💚 " + WHEEL_OPTIONS[chosen];
+    document.getElementById('wheel-result').classList.add('show');
+    addHistory("[Date idea] " + WHEEL_OPTIONS[chosen]);
+  }, 4100);
+}
+
+/* ---------- QUIZ ---------- */
+let quizIndex = 0;
+let quizOrder = [];
+function startQuiz(){
+  quizOrder = [...Array(QUIZ_QUESTIONS.length).keys()].sort(()=>Math.random()-0.5);
+  quizIndex = 0;
+  renderQuiz();
+}
+function renderQuiz(){
+  document.getElementById('quiz-progress').textContent = `Câu ${quizIndex+1} / ${QUIZ_QUESTIONS.length}`;
+  document.getElementById('quiz-q').textContent = QUIZ_QUESTIONS[quizOrder[quizIndex]];
+}
+function nextQuiz(){
+  addHistory("[Câu hỏi] " + QUIZ_QUESTIONS[quizOrder[quizIndex]]);
+  quizIndex = (quizIndex+1) % QUIZ_QUESTIONS.length;
+  renderQuiz();
+}
+</script>
+</body>
+</html>

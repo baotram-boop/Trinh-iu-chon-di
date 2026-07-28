@@ -291,29 +291,6 @@
     color:var(--sage-deep);
   }
 
-  /* Quiz (câu hỏi hiểu nhau) */
-  .quiz-progress{
-    text-align:center;
-    font-size:12px;
-    font-weight:700;
-    color:var(--sage-deep);
-    margin-bottom:10px;
-  }
-  .quiz-q{
-    background:#fff;
-    border-radius:20px;
-    padding:24px 20px;
-    text-align:center;
-    border:2px dashed var(--sage);
-    min-height:110px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Baloo 2', sans-serif;
-    font-weight:600;
-    font-size:16px;
-  }
-
   /* Love counter */
   .counter-setup{
     background:#fff;
@@ -476,10 +453,6 @@
         VÒNG QUAY HẸN HÒ
         <span class="sub">tụi mình ăn gì / đi đâu / làm gì cuối tuần</span>
       </button>
-      <button class="menu-btn" onclick="showScreen('quiz'); startQuiz();">
-        CÂU HỎI HIỂU NHAU
-        <span class="sub">1 câu mỗi lần, trả lời cùng nhau</span>
-      </button>
       <button class="menu-btn" onclick="showScreen('counter')">
         ĐẾM NGÀY YÊU
         <span class="sub">số ngày tụi mình bên nhau + mốc kỷ niệm</span>
@@ -536,16 +509,6 @@
       <div class="wheel-result" id="wheel-result">
         <div class="txt" id="wheel-result-text"></div>
       </div>
-    </div>
-  </div>
-
-  <!-- QUIZ (câu hỏi hiểu nhau) -->
-  <div id="screen-quiz" class="screen">
-    <div class="card">
-      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div class="quiz-progress" id="quiz-progress"></div>
-      <div class="quiz-q" id="quiz-q"></div>
-      <button class="action-btn" onclick="nextQuiz()">CÂU TIẾP THEO ➜</button>
     </div>
   </div>
 
@@ -660,19 +623,6 @@ const WHEEL_GROUPS = {
 };
 const WHEEL_COLORS = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF"];
 let currentWheelGroup = "Ăn gì";
-
-const QUIZ_QUESTIONS = [
-  "Điều gì khiến bạn cảm thấy được yêu thương nhất: lời nói, hành động, quà tặng, thời gian, hay đụng chạm thân mật?",
-  "Một kỷ niệm nào giữa hai đứa mình mà bạn nhớ nhất, và vì sao?",
-  "Nếu được đi du lịch cùng nhau bất kỳ đâu, bạn chọn nơi nào?",
-  "Có điều gì bạn chưa từng nói với người iu nhưng muốn nói không?",
-  "Bạn nghĩ hai đứa mình hợp nhau nhất ở điểm nào?",
-  "Nếu phải miêu tả người iu bằng 3 từ, bạn chọn từ nào?",
-  "Điều gì bạn học được từ người iu kể từ khi yêu nhau?",
-  "Bạn muốn hai đứa mình sẽ như thế nào trong 5 năm tới?",
-  "Có thói quen nào của người iu khiến bạn thấy dễ thương không?",
-  "Nếu có một ngày nghỉ hoàn hảo cùng nhau, ngày đó sẽ trông như thế nào?"
-];
 
 /* Love language quiz data */
 const LL_QUESTIONS = [
@@ -891,24 +841,6 @@ function spinWheel(){
     document.getElementById('wheel-result').classList.add('show');
     addHistory(`[${currentWheelGroup}] ` + options[chosen]);
   }, 4100);
-}
-
-/* ---------- QUIZ (câu hỏi hiểu nhau) ---------- */
-let quizIndex = 0;
-let quizOrder = [];
-function startQuiz(){
-  quizOrder = [...Array(QUIZ_QUESTIONS.length).keys()].sort(()=>Math.random()-0.5);
-  quizIndex = 0;
-  renderQuiz();
-}
-function renderQuiz(){
-  document.getElementById('quiz-progress').textContent = `Câu ${quizIndex+1} / ${QUIZ_QUESTIONS.length}`;
-  document.getElementById('quiz-q').textContent = QUIZ_QUESTIONS[quizOrder[quizIndex]];
-}
-function nextQuiz(){
-  addHistory("[Câu hỏi] " + QUIZ_QUESTIONS[quizOrder[quizIndex]]);
-  quizIndex = (quizIndex+1) % QUIZ_QUESTIONS.length;
-  renderQuiz();
 }
 
 /* ---------- LOVE COUNTER ---------- */

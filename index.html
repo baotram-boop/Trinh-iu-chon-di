@@ -163,23 +163,6 @@
     border:2px solid var(--pink-deep);
   }
 
-  /* History list */
-  .history-item{
-    background:#fff;
-    border-radius:16px;
-    padding:14px 16px;
-    margin-bottom:10px;
-    border-left:5px solid var(--sage);
-    font-size:14px;
-    font-weight:600;
-  }
-  .history-item .hdate{
-    display:block;
-    font-size:11px;
-    color:var(--sage-deep);
-    font-weight:700;
-    margin-bottom:4px;
-  }
   .empty-msg{
     text-align:center;
     color:var(--sage-deep);
@@ -427,10 +410,168 @@
     border-radius:999px;
     transition: width .6s ease;
   }
+
+  /* Shared form elements for new features */
+  .write-box{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    border:2px dashed var(--pink);
+    margin-bottom:16px;
+  }
+  .form-group{ margin-bottom:12px; text-align:left; }
+  .form-label{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    color:var(--pink-deep);
+    display:block;
+    margin-bottom:6px;
+  }
+  .form-input, .form-textarea, .form-select{
+    width:100%;
+    padding:11px 12px;
+    border-radius:12px;
+    border:2px solid var(--pink-soft);
+    font-family:'Nunito', sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--brown);
+    background:#fff;
+  }
+  .form-textarea{ min-height:70px; resize:vertical; }
+
+  /* Sync code overlay */
+  .sync-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  .sync-modal{
+    background:#fff;
+    border-radius:24px;
+    padding:28px 24px;
+    max-width:320px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  }
+  .sync-modal h2{
+    font-family:'Baloo 2', sans-serif;
+    font-size:20px;
+    font-weight:800;
+    color:var(--pink-deep);
+    margin:0 0 12px;
+  }
+  .sync-modal p{
+    font-size:13px;
+    color:var(--sage-deep);
+    margin:0 0 18px;
+    line-height:1.5;
+  }
+  .sync-modal input{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:2px solid var(--pink);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    letter-spacing:2px;
+    margin-bottom:16px;
+    color:var(--pink-deep);
+  }
+  .sync-modal button{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:none;
+    background:var(--pink-deep);
+    color:#fff;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    margin-bottom:8px;
+  }
+  .sync-modal button:active{ transform:scale(0.98); }
+
+  /* Cây biết ơn */
+  .tree-wrap{ display:flex; justify-content:center; margin:6px 0 16px; }
+  .tree-count{
+    text-align:center;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    color:var(--sage-deep);
+    margin-bottom:6px;
+    font-size:14px;
+  }
+  .leaf-item{
+    background:#fff;
+    border-radius:14px;
+    padding:12px 14px;
+    margin-bottom:8px;
+    border-left:5px solid var(--sage);
+    font-size:13.5px;
+    font-weight:600;
+  }
+  .leaf-item .ldate{
+    display:block;
+    font-size:11px;
+    color:var(--sage-deep);
+    font-weight:700;
+    margin-bottom:3px;
+  }
+
+  /* Lời hứa nhỏ */
+  .promise-item{
+    background:#fff;
+    border-radius:16px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    border-left:5px solid var(--pink);
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .promise-item input[type="checkbox"]{
+    margin-top:3px;
+    width:18px;
+    height:18px;
+    accent-color: var(--pink-deep);
+    flex-shrink:0;
+  }
+  .promise-item .ptext{ font-size:14px; font-weight:600; }
+  .promise-item.kept .ptext{ text-decoration:line-through; opacity:0.55; }
+  .promise-item .pmeta{
+    display:block;
+    font-size:11px;
+    color:var(--sage-deep);
+    font-weight:700;
+    margin-bottom:3px;
+  }
+
 </style>
 </head>
 <body>
 <div class="phone">
+  <!-- SYNC CODE MODAL -->
+  <div id="sync-overlay" class="sync-overlay" style="display:none;">
+    <div class="sync-modal">
+      <h2>🔗 Sync Code</h2>
+      <p>Nhập code giống nhau để 2 người xem được dữ liệu của nhau</p>
+      <input type="text" id="sync-code-input" placeholder="VD: ABC123" maxlength="20">
+      <button onclick="confirmSyncCode()">ĐẶT CODE</button>
+    </div>
+  </div>
+
   <div class="eyebrow">Welcome To Em Trâm's Shop</div>
   <h1 class="title">TRỊNH IU<br>CHỌN ĐI 💗</h1>
 
@@ -440,10 +581,6 @@
       <button class="menu-btn" onclick="showScreen('advice')">
         LỜI KHUYÊN HÔM NAY
         <span class="sub">1 câu mỗi ngày nhá</span>
-      </button>
-      <button class="menu-btn" onclick="showScreen('history')">
-        LỜI KHUYÊN ĐÃ NHẬN
-        <span class="sub">xem lại những gì đã đọc</span>
       </button>
       <button class="menu-btn" onclick="showScreen('draw')">
         RÚT BÀI MAY MẮN
@@ -461,6 +598,14 @@
         LOVE LANGUAGE QUIZ
         <span class="sub">tìm ngôn ngữ tình yêu của anh và em</span>
       </button>
+      <button class="menu-btn" onclick="showScreen('tree')">
+        CÂY BIẾT ƠN
+        <span class="sub">mỗi ngày thêm 1 lá biết ơn</span>
+      </button>
+      <button class="menu-btn" onclick="showScreen('promise')">
+        LỜI HỨA NHỎ
+        <span class="sub">những cam kết nho nhỏ để nhắc nhau</span>
+      </button>
     </div>
   </div>
 
@@ -473,14 +618,6 @@
         <div class="advice-text" id="advice-text">Đang tải...</div>
       </div>
       <button class="action-btn" onclick="newAdvice()">RÚT LỜI KHUYÊN KHÁC 🔁</button>
-    </div>
-  </div>
-
-  <!-- HISTORY -->
-  <div id="screen-history" class="screen">
-    <div class="card">
-      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div id="history-list"></div>
     </div>
   </div>
 
@@ -560,6 +697,50 @@
       </div>
     </div>
   </div>
+
+  <!-- CÂY BIẾT ƠN -->
+  <div id="screen-tree" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <button class="action-btn secondary" style="font-size:12px; padding:8px; margin-bottom:12px;" onclick="changeSyncCode()">🔗 Đổi Sync Code</button>
+      <div class="write-box">
+        <div class="form-group">
+          <label class="form-label">Hôm nay biết ơn điều gì ở người iu?</label>
+          <textarea class="form-textarea" id="leaf-input" placeholder="Ví dụ: cảm ơn vì đã..."></textarea>
+        </div>
+        <button class="action-btn" onclick="addLeaf()">THÊM LÁ MỚI 🍃</button>
+      </div>
+      <div class="tree-count" id="tree-count"></div>
+      <div class="tree-wrap">
+        <svg id="tree-svg" viewBox="0 0 300 300" width="260" height="260"></svg>
+      </div>
+      <div id="leaf-list"></div>
+    </div>
+  </div>
+
+  <!-- LỜI HỨA NHỎ -->
+  <div id="screen-promise" class="screen">
+    <div class="card">
+      <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
+      <button class="action-btn secondary" style="font-size:12px; padding:8px; margin-bottom:12px;" onclick="changeSyncCode()">🔗 Đổi Sync Code</button>
+      <div class="write-box">
+        <div class="form-group">
+          <label class="form-label">Ai hứa?</label>
+          <select class="form-select" id="promise-who">
+            <option value="Anh">Anh</option>
+            <option value="Em">Em</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lời hứa / cam kết nho nhỏ</label>
+          <textarea class="form-textarea" id="promise-input" placeholder="Ví dụ: anh hứa sẽ..."></textarea>
+        </div>
+        <button class="action-btn" onclick="addPromise()">GHI LỜI HỨA 🤝</button>
+      </div>
+      <div id="promise-list"></div>
+    </div>
+  </div>
+
 
 </div>
 
@@ -699,30 +880,16 @@ const LL_INFO = {
   touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với ní nhiều hơn cả ngàn lời nói." }
 };
 
-/* ---------- STATE (lưu bằng localStorage) ---------- */
-function getHistory(){
-  try{ return JSON.parse(localStorage.getItem('trinhiu_history') || '[]'); }
-  catch(e){ return []; }
-}
-function saveHistory(list){
-  localStorage.setItem('trinhiu_history', JSON.stringify(list));
-}
-function addHistory(text){
-  const list = getHistory();
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
-  list.unshift({ date: dateStr, text: text });
-  saveHistory(list.slice(0,50));
-}
-
+/* ---------- NAVIGATION ---------- */
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+name).classList.add('active');
   if(name==='advice') loadTodayAdvice();
-  if(name==='history') renderHistory();
   if(name==='draw') resetDraw();
   if(name==='wheel') initWheelScreen();
   if(name==='counter') initCounterScreen();
+  if(name==='tree') renderTree();
+  if(name==='promise') renderPromises();
 }
 
 /* ---------- ADVICE ---------- */
@@ -737,27 +904,10 @@ function loadTodayAdvice(customIndex){
   const text = ADVICE_LIST[idx];
   document.getElementById('advice-text').textContent = text;
   document.getElementById('advice-date').textContent = new Date().toLocaleDateString('vi-VN', {weekday:'long', day:'2-digit', month:'2-digit'});
-  addHistory(text);
 }
 function newAdvice(){
   const idx = Math.floor(Math.random()*ADVICE_LIST.length);
   loadTodayAdvice(idx);
-}
-
-/* ---------- HISTORY ---------- */
-function renderHistory(){
-  const list = getHistory();
-  const container = document.getElementById('history-list');
-  if(list.length===0){
-    container.innerHTML = '<div class="empty-msg">Chưa có lời khuyên nào được nhận 🌱<br>Bấm "Lời khuyên hôm nay" để bắt đầu nhé!</div>';
-    return;
-  }
-  container.innerHTML = list.map(item => `
-    <div class="history-item">
-      <span class="hdate">${item.date}</span>
-      ${item.text}
-    </div>
-  `).join('');
 }
 
 /* ---------- CARD DRAW ---------- */
@@ -778,7 +928,6 @@ function pickCard(el){
       <div class="txt">${card.text}</div>
     </div>
   `;
-  addHistory("[Thử thách] " + card.text);
 }
 
 /* ---------- WHEEL (có nhóm) ---------- */
@@ -839,7 +988,6 @@ function spinWheel(){
   setTimeout(()=>{
     document.getElementById('wheel-result-text').textContent = "💚 " + options[chosen];
     document.getElementById('wheel-result').classList.add('show');
-    addHistory(`[${currentWheelGroup}] ` + options[chosen]);
   }, 4100);
 }
 
@@ -953,9 +1101,142 @@ function showLLResult(){
       </div>
     `;
   }).join('');
-
-  addHistory(`[Love Language] Kết quả: ${info.name}`);
 }
+
+/* ---------- SYNC CODE ---------- */
+function getSyncCode(){
+  return localStorage.getItem('trinhiu_sync_code') || '';
+}
+function setSyncCode(code){
+  localStorage.setItem('trinhiu_sync_code', code);
+}
+function confirmSyncCode(){
+  const code = document.getElementById('sync-code-input').value.trim().toUpperCase();
+  if(!code){ alert('Vui lòng nhập code'); return; }
+  setSyncCode(code);
+  document.getElementById('sync-overlay').style.display = 'none';
+  showScreen('menu');
+}
+function showSyncCodeModal(){
+  const existing = getSyncCode();
+  if(existing) return; // Nếu đã có code, không hiện modal
+  document.getElementById('sync-overlay').style.display = 'flex';
+  document.getElementById('sync-code-input').focus();
+}
+function changeSyncCode(){
+  const newCode = prompt('Nhập Sync Code mới:', getSyncCode());
+  if(newCode){
+    setSyncCode(newCode.trim().toUpperCase());
+    renderTree();
+    renderPromises();
+  }
+}
+
+/* ---------- CÂY BIẾT ƠN ---------- */
+function getLeaves(){
+  const code = getSyncCode();
+  const key = code ? `trinhiu_leaves_${code}` : 'trinhiu_leaves';
+  try{ return JSON.parse(localStorage.getItem(key) || '[]'); }
+  catch(e){ return []; }
+}
+function saveLeaves(list){
+  const code = getSyncCode();
+  const key = code ? `trinhiu_leaves_${code}` : 'trinhiu_leaves';
+  localStorage.setItem(key, JSON.stringify(list));
+}
+function addLeaf(){
+  const ta = document.getElementById('leaf-input');
+  const text = ta.value.trim();
+  if(!text) return;
+  const list = getLeaves();
+  list.push({ date: new Date().toISOString().slice(0,10), text: text });
+  saveLeaves(list);
+  ta.value = '';
+  renderTree();
+}
+function renderTree(){
+  const list = getLeaves();
+  document.getElementById('tree-count').textContent = `🍃 ${list.length} lá biết ơn đã được thêm`;
+  buildTreeSVG(list.length);
+  const container = document.getElementById('leaf-list');
+  if(list.length===0){
+    container.innerHTML = '<div class="empty-msg">Cây còn trơ trụi 🌱<br>Thêm lá đầu tiên phía trên nhé!</div>';
+    return;
+  }
+  container.innerHTML = [...list].reverse().map(item=>`
+    <div class="leaf-item"><span class="ldate">${new Date(item.date).toLocaleDateString('vi-VN')}</span>${item.text}</div>
+  `).join('');
+}
+function buildTreeSVG(n){
+  const svg = document.getElementById('tree-svg');
+  const cx=150, canopyCy=140, canopyR=95;
+  let html = `<rect x="140" y="190" width="20" height="90" rx="6" fill="#8B6F52"/>`;
+  html += `<ellipse cx="150" cy="150" rx="105" ry="95" fill="#E9F2E8" opacity="0.55"/>`;
+  const count = Math.min(n, 250);
+  const colors = ['#8FAE8B','#5F8360','#A9C7A3'];
+  for(let i=0;i<count;i++){
+    const angle = i*137.5*Math.PI/180;
+    const radiusFrac = Math.sqrt(i/(count||1));
+    const rx = radiusFrac*canopyR;
+    const x = cx + rx*Math.cos(angle);
+    const y = canopyCy + rx*Math.sin(angle)*0.82;
+    const color = colors[i%colors.length];
+    html += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="${color}" opacity="0.9"/>`;
+  }
+  svg.innerHTML = html;
+}
+
+/* ---------- LỜI HỨA NHỎ ---------- */
+function getPromises(){
+  const code = getSyncCode();
+  const key = code ? `trinhiu_promises_${code}` : 'trinhiu_promises';
+  try{ return JSON.parse(localStorage.getItem(key) || '[]'); }
+  catch(e){ return []; }
+}
+function savePromises(list){
+  const code = getSyncCode();
+  const key = code ? `trinhiu_promises_${code}` : 'trinhiu_promises';
+  localStorage.setItem(key, JSON.stringify(list));
+}
+function addPromise(){
+  const who = document.getElementById('promise-who').value;
+  const ta = document.getElementById('promise-input');
+  const text = ta.value.trim();
+  if(!text) return;
+  const list = getPromises();
+  list.push({ who: who, text: text, date: new Date().toISOString(), kept:false });
+  savePromises(list);
+  ta.value = '';
+  renderPromises();
+}
+function togglePromise(idx){
+  const list = getPromises();
+  list[idx].kept = !list[idx].kept;
+  savePromises(list);
+  renderPromises();
+}
+function renderPromises(){
+  const list = getPromises();
+  const container = document.getElementById('promise-list');
+  if(list.length===0){
+    container.innerHTML = '<div class="empty-msg">Chưa có lời hứa nào 🤝<br>Viết lời hứa đầu tiên phía trên nhé!</div>';
+    return;
+  }
+  container.innerHTML = list.map((item,i)=>`
+    <div class="promise-item ${item.kept?'kept':''}">
+      <input type="checkbox" ${item.kept?'checked':''} onchange="togglePromise(${i})">
+      <div>
+        <span class="pmeta">${item.who} • ${new Date(item.date).toLocaleDateString('vi-VN')}</span>
+        <span class="ptext">${item.text}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ---------- INIT ON LOAD ---------- */
+document.addEventListener('DOMContentLoaded', function(){
+  showSyncCodeModal();
+});
 </script>
 </body>
 </html>

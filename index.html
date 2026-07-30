@@ -622,14 +622,14 @@
     </div>
   </div>
 
-  <!-- CARD DRAW -->
+   <!-- CARD DRAW -->
   <div id="screen-draw" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div class="date-tag">Chọn 1 lá bài bất kỳ</div>
+      <div class="date-tag" id="draw-status">🎴 Bạn còn được rút 1 lá bài hôm nay</div>
       <div class="card-table" id="card-table"></div>
       <div id="draw-result"></div>
-      <button class="action-btn secondary" onclick="resetDraw()">TRÁO BÀI LẠI 🔀</button>
+      <button class="action-btn secondary" onclick="resetDraw()" style="display:none;" id="reshuffle-btn">TRÁO BÀI LẠI 🔀</button>
     </div>
   </div>
 
@@ -776,6 +776,7 @@ const DRAW_CARDS = [
   { icon:"🎉", text:"Em Trâm được +8đ không lý do - Trịnh hong được coi như chưa thấy" },
   { icon:"💰", text:"Người iu trả tiền bữa ăn tối kế tiếp" },
   { icon:"🎁", text:"Trịnh muốn quà gì? Nói liền em Trâm sẽ tặng" },
+  { icon:"🛏️", text:"Được 1 lần không phục vụ, người iu làm mọi việc" },
   { icon:"🌙", text:"Gọi video 15 phút trước khi ngủ dù cả ngày đã nhắn tin nhiều" },
 ];
 
@@ -904,18 +905,58 @@ function newAdvice(){
 
 /* ---------- CARD DRAW ---------- */
 let drawOrder = [];
+ 
+function canDrawCard(){
+  const today = new Date().toISOString().slice(0,10);
+  const lastDraw = localStorage.getItem('trinhiu_lastDrawDate');
+  return lastDraw !== today;
+}
+ 
+function getDrawStatus(){
+  const today = new Date().toISOString().slice(0,10);
+  const lastDraw = localStorage.getItem('trinhiu_lastDrawDate');
+  if(lastDraw === today){
+    return '✅ Ní đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
+  }
+  return '🎴 Ní còn được rút 1 lá bài hôm nay';
+}
+ 
 function resetDraw(){
+  const canDraw = canDrawCard();
+  document.getElementById('draw-status').textContent = getDrawStatus();
+  document.getElementById('reshuffle-btn').style.display = canDraw ? 'block' : 'none';
+  
+  if(!canDraw){
+    document.getElementById('card-table').innerHTML = '';
+    document.getElementById('draw-result').innerHTML = '';
+    return;
+  }
   drawOrder = [...Array(DRAW_CARDS.length).keys()].sort(()=>Math.random()-0.5).slice(0,6);
   const table = document.getElementById('card-table');
   table.innerHTML = drawOrder.map((cardIdx,i)=>`<div class="mini-card" data-idx="${cardIdx}" onclick="pickCard(this)">🎴</div>`).join('');
   document.getElementById('draw-result').innerHTML = '';
 }
+ 
 function pickCard(el){
+  if(!canDrawCard()){
+    alert(getDrawStatus());
+    return;
+  }
   document.querySelectorAll('.mini-card').forEach(c=>c.classList.add('picked'));
   const idx = el.getAttribute('data-idx');
   const card = DRAW_CARDS[idx];
+  
+  // Lưu ngày đã rút
+  const today = new Date().toISOString().slice(0,10);
+  localStorage.setItem('trinhiu_lastDrawDate', today);
+  
+  // Cập nhật trạng thái
+  document.getElementById('draw-status').textContent = '✅ Ní đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
+  document.getElementById('reshuffle-btn').style.display = 'none';
+  
   document.getElementById('draw-result').innerHTML = `
-    <div class="result-card">
+    <div class="result-card" style="border-color:${borderColor}; border-width:3px;">
+      <div style="font-size:12px; font-weight:700; color:${borderColor}; margin-bottom:8px;">${typeLabel}</div>
       <span class="icon">${card.icon}</span>
       <div class="txt">${card.text}</div>
     </div>

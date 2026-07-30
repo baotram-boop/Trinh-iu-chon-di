@@ -585,15 +585,15 @@
       </button>
       <button class="menu-btn" onclick="showScreen('draw')">
         RÚT BÀI MAY MẮN
-        <span class="sub">rút 1 thử thách ngẫu nhiên</span>
+        <span class="sub">rút 1 lá bài ngẫu nhiên</span>
       </button>
       <button class="menu-btn" onclick="showScreen('wheel')">
         VÒNG QUAY HẸN HÒ
-        <span class="sub">tụi mình ăn gì / đi đâu / làm gì cuối tuần</span>
+        <span class="sub">tụi mình ăn gì / đi đâu / làm gì</span>
       </button>
       <button class="menu-btn" onclick="showScreen('counter')">
         ĐẾM NGÀY YÊU
-        <span class="sub">số ngày tụi mình bên nhau + mốc kỷ niệm</span>
+        <span class="sub">số ngày tụi mình bên nhau</span>
       </button>
       <button class="menu-btn" onclick="showScreen('lovelang'); startLoveLang();">
         LOVE LANGUAGE QUIZ
@@ -605,7 +605,7 @@
       </button>
       <button class="menu-btn" onclick="showScreen('promise')">
         LỜI HỨA NHỎ
-        <span class="sub">những cam kết nho nhỏ để nhắc nhau</span>
+        <span class="sub">những cam kết nho nhỏ cho mình và cho nhau</span>
       </button>
     </div>
   </div>
@@ -706,7 +706,7 @@
       <button class="action-btn secondary" style="font-size:12px; padding:8px; margin-bottom:12px;" onclick="changeSyncCode()">🔗 Đổi Sync Code</button>
       <div class="write-box">
         <div class="form-group">
-          <label class="form-label">Hôm nay biết ơn điều gì ở người iu?</label>
+          <label class="form-label">Hôm nay bạn biết ơn điều gì ở người iu?</label>
           <textarea class="form-textarea" id="leaf-input" placeholder="Ví dụ: cảm ơn vì đã..."></textarea>
         </div>
         <button class="action-btn" onclick="addLeaf()">THÊM LÁ MỚI 🍃</button>
@@ -748,7 +748,7 @@
 <script>
 /* ---------- DATA (mẫu gợi ý, có thể tự chỉnh sửa) ---------- */
 const ADVICE_LIST = [
- "Đừng chờ một dịp đặc biệt để nói yêu. Hãy nói 'I miss u' lúc 2 giờ chiều",
+  "Đừng chờ một dịp đặc biệt để nói yêu. Hãy nói 'I miss u' lúc 2 giờ chiều",
   "Khi cãi nhau, thử dừng lại 5 giây trước khi trả lời — nhiều khi câu đầu tiên không phải câu nên nói",
   "Một mối quan hệ được tưới bằng những điều nhỏ bé sẽ nở hoa lâu hơn những lời hứa lớn lao",
   "Đừng so sánh mối quan hệ của mình với ai khác — mỗi cặp đôi có nhịp riêng.",
@@ -764,27 +764,19 @@ const ADVICE_LIST = [
   "Người yêu nói 'anh/em bình thường'... nhưng hệ thống phát hiện 99% khả năng là bất thường",
   "Nói 'cảm ơn' với những điều nhỏ người iu làm mà bạn hay coi là hiển nhiên",
   "Người yêu bạn hôm nay có 90% khả năng muốn được ôm. 10% còn lại là họ đang giả vờ không cần",
-  "Thử hỏi han về gia đình, bạn bè của người iu — quan tâm vòng tròn của họ cũng là quan tâm họ.",
+  "Thử hỏi han về gia đình, bạn bè của người iu — quan tâm vòng tròn của họ cũng là quan tâm họ",
   "Nếu người yêu nói 'em/anh ổn mà', hãy kiểm tra thêm một lần. Đây là bug phổ biến của con người",
-  "Đừng ngại thể hiện tình cảm trước mặt người khác một chút, nếu cả hai đều thoải mái."
+  "Đừng ngại thể hiện tình cảm trước mặt người khác một chút, nếu cả hai đều thoải mái"
 ];
 
 const DRAW_CARDS = [
-  { icon:"🧋", text:"Chụp màn hình gửi liền, người iu sẽ order nước cho ní"},
+  { icon:"🧋", text:"Chụp màn hình gửi liền, người iu sẽ order nước cho ní" },
   { icon:"🍜", text:"Người iu phải nấu một món ăn yêu thích của ní" },
   { icon:"🥹", text:"Em Trâm bị -4đ không lý do - Trịnh nhớ gửi làm bằng chứng" },
   { icon:"🎉", text:"Em Trâm được +8đ không lý do - Trịnh hong được coi như chưa thấy" },
-  { icon:"🕯️", text:"Dành 15 phút chỉ để hỏi về một điều người iu đang lo lắng dạo này." },
-  { icon:"🎁", text:"Tặng người iu một món quà nhỏ không nhân dịp gì cả." },
-  { icon:"🚶", text:"Rủ nhau đi dạo 20 phút không mang điện thoại." },
-  { icon:"📝", text:"Viết ra 3 điều bạn biết ơn về người iu, đọc cho họ nghe." },
-  { icon:"☕", text:"Pha một ly nước/cà phê mang tận nơi cho người iu hôm nay." },
-  { icon:"🎵", text:"Gửi một bài hát khiến bạn nhớ đến người iu, kèm lý do." },
-  { icon:"🧹", text:"Chủ động làm một việc nhà mà thường người iu hay làm." },
-  { icon:"💬", text:"Hỏi người iu: 'Có điều gì về anh/em mà em/anh muốn anh/em thay đổi không?' và lắng nghe không phản bác." },
-  { icon:"🌙", text:"Gọi video 5 phút trước khi ngủ dù cả ngày đã nhắn tin nhiều." },
-  { icon:"🎨", text:"Cùng nhau lên kế hoạch cho một chuyến đi (dù chưa chắc đi được ngay)." },
-  { icon:"🫶", text:"Ôm người iu 10 giây không nói gì, chỉ ôm thôi." }
+  { icon:"💰", text:"Người iu trả tiền bữa ăn tối kế tiếp" },
+  { icon:"🎁", text:"Trịnh muốn quà gì? Nói liền em Trâm sẽ tặng" },
+  { icon:"🌙", text:"Gọi video 15 phút trước khi ngủ dù cả ngày đã nhắn tin nhiều" },
 ];
 
 /* Vòng quay hẹn hò — chia theo nhóm */

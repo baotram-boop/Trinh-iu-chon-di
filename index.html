@@ -916,9 +916,9 @@ function getDrawStatus(){
   const today = new Date().toISOString().slice(0,10);
   const lastDraw = localStorage.getItem('trinhiu_lastDrawDate');
   if(lastDraw === today){
-    return '✅ Ní đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
+    return '✅ Đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
   }
-  return '🎴 Ní còn được rút 1 lá bài hôm nay';
+  return '🎴 Bạn còn được rút 1 lá bài hôm nay';
 }
  
 function resetDraw(){
@@ -931,6 +931,8 @@ function resetDraw(){
     document.getElementById('draw-result').innerHTML = '';
     return;
   }
+  
+  // Mỗi lần vào (hoặc refresh), shuffle lại 6 lá bài ngẫu nhiên từ danh sách
   drawOrder = [...Array(DRAW_CARDS.length).keys()].sort(()=>Math.random()-0.5).slice(0,6);
   const table = document.getElementById('card-table');
   table.innerHTML = drawOrder.map((cardIdx,i)=>`<div class="mini-card" data-idx="${cardIdx}" onclick="pickCard(this)">🎴</div>`).join('');
@@ -951,9 +953,9 @@ function pickCard(el){
   localStorage.setItem('trinhiu_lastDrawDate', today);
   
   // Cập nhật trạng thái
-  document.getElementById('draw-status').textContent = '✅ Ní đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
+  document.getElementById('draw-status').textContent = '✅ Đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
   document.getElementById('reshuffle-btn').style.display = 'none';
-
+  
   // Hiển thị kết quả
   document.getElementById('draw-result').innerHTML = `
     <div class="result-card">

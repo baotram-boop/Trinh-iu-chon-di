@@ -953,10 +953,10 @@ function pickCard(el){
   // Cập nhật trạng thái
   document.getElementById('draw-status').textContent = '✅ Ní đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
   document.getElementById('reshuffle-btn').style.display = 'none';
-  
+
+  // Hiển thị kết quả
   document.getElementById('draw-result').innerHTML = `
-    <div class="result-card" style="border-color:${borderColor}; border-width:3px;">
-      <div style="font-size:12px; font-weight:700; color:${borderColor}; margin-bottom:8px;">${typeLabel}</div>
+    <div class="result-card">
       <span class="icon">${card.icon}</span>
       <div class="txt">${card.text}</div>
     </div>

@@ -581,7 +581,7 @@
     <div class="card">
       <button class="menu-btn" onclick="showScreen('advice')">
         LỜI KHUYÊN HÔM NAY
-        <span class="sub">1 câu mỗi ngày nhá</span>
+        <span class="sub">nhận thông điệp vũ trụ nhá</span>
       </button>
       <button class="menu-btn" onclick="showScreen('draw')">
         RÚT BÀI MAY MẮN
@@ -626,7 +626,7 @@
   <div id="screen-draw" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div class="date-tag" id="draw-status">🎴 Bạn còn được rút 1 lá bài hôm nay</div>
+      <div class="date-tag" id="draw-status">🎴 Bạn được rút 1 lá bài hôm nay</div>
       <div class="card-table" id="card-table"></div>
       <div id="draw-result"></div>
       <button class="action-btn secondary" onclick="resetDraw()" style="display:none;" id="reshuffle-btn">TRÁO BÀI LẠI 🔀</button>
@@ -916,9 +916,9 @@ function getDrawStatus(){
   const today = new Date().toISOString().slice(0,10);
   const lastDraw = localStorage.getItem('trinhiu_lastDrawDate');
   if(lastDraw === today){
-    return '✅ Đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
+    return '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nha 💚';
   }
-  return '🎴 Bạn còn được rút 1 lá bài hôm nay';
+  return '🎴 Bạn được rút 1 lá bài hôm nay';
 }
  
 function resetDraw(){
@@ -953,7 +953,7 @@ function pickCard(el){
   localStorage.setItem('trinhiu_lastDrawDate', today);
   
   // Cập nhật trạng thái
-  document.getElementById('draw-status').textContent = '✅ Đã rút hôm nay rồi! Quay lại ngày mai nha 💚';
+  document.getElementById('draw-status').textContent = '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nha 💚';
   document.getElementById('reshuffle-btn').style.display = 'none';
   
   // Hiển thị kết quả

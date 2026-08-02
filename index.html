@@ -554,7 +554,7 @@
   <div id="screen-draw" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div class="date-tag" id="draw-status">🎴 Anh ơi, anh được rút 1 lá bài hôm nay</div>
+      <div class="date-tag" id="draw-status">🎴 Anh này, anh được rút 1 lá bài hôm nay</div>
       <div class="card-table" id="card-table"></div>
       <div id="draw-result"></div>
       <button class="action-btn secondary" onclick="resetDraw()" style="display:none;" id="reshuffle-btn">TRÁO BÀI LẠI 🔀</button>
@@ -635,7 +635,7 @@
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
       <div class="write-box">
         <div class="form-group">
-          <label class="form-label">Hôm nay anh biết ơn điều gì ở người iu?</label>
+          <label class="form-label">Hôm nay anh biết ơn điều gì ở người iu dạ?</label>
           <textarea class="form-textarea" id="leaf-input" placeholder="Ví dụ: cảm ơn vì đã..."></textarea>
         </div>
         <button class="action-btn" onclick="addLeaf()">THÊM LÁ MỚI 🍃</button>
@@ -664,7 +664,7 @@
           <label class="form-label">Lời hứa / cam kết nho nhỏ</label>
           <textarea class="form-textarea" id="promise-input" placeholder="Ví dụ: anh hứa sẽ..."></textarea>
         </div>
-        <button class="action-btn" onclick="addPromise()">GHI LỜI HỨA 🤝</button>
+        <button class="action-btn" onclick="addPromise()">CHỐT NHA 🤝</button>
       </div>
       <div id="promise-list"></div>
     </div>
@@ -676,7 +676,7 @@
 <script>
 /* ---------- DATA (mẫu gợi ý, có thể tự chỉnh sửa) ---------- */
 const ADVICE_LIST = [
-  "Đừng chờ một dịp đặc biệt để nói yêu. Hãy nói 'I miss u' lúc 2 giờ chiềuu",
+  "Đừng chờ một dịp đặc biệt để nói yêu. Hãy nói 'I miss u' lúc 2 giờ chiều",
   "Hôm nay ra đường anh nhớ kiểm tra lốp xe đã căng và bình xăng đã đầy nhá",
   "Một mối quan hệ được tưới bằng những điều nhỏ bé sẽ nở hoa lâu hơn những lời hứa lớn lao",
   "Cái chăn 37 độ ơi, nhớ uống đủ nước và dưỡng môi đều đều nháaa",
@@ -716,15 +716,15 @@ const DRAW_CARDS = [
 const WHEEL_GROUPS = {
   "Ăn gì": [
     "Mì cay", "Đồ nướng", "Ốc", "Gà rán", "Cháo gà", "Bún bò", "Mì bột ngọt",
-    "Món chay", "Mì ý A Hoài", "Bún riêu", "Bún mắm", "Lẩu gà lá é", "Món Thái", "Dimsum", "Pizza"
+    "Món chay", "Mì ý A Hoài", "Bún riêu", "Bún mắm", "Phở", "Lẩu gà lá é", "Món Thái", "Dimsum", "Pizza"
   ],
   "Đi đâu": [
-    "Ăn sáng cà hê", "Công viên buổi tối", "Workshop", "Bơi bơi", "Cà hê mèo", "Quán cà hê board game", "Massage", "Coi kịch/accoustic",
+    "Ăn sáng cà hê", "Công viên buổi tối", "Múa dưỡng sinh", "Bơi bơi", "Cà hê mèo", "Quán cà hê board game", "Massage", "Coi kịch/accoustic",
     "Xem phim", "Siêu thị mua sắm", "Picnic đổi gió", "Karaoke", "Đi nhạo"
   ],
   "Làm gì": [
     "Xem phim tại nhà", "Chơi board game", "Nấu ăn cùng nhau", "Chọn một chữ cái rồi ăn, đi và chơi theo chữ đó",
-    "Chơi game đối kháng", "Vẽ/tô màu cùng nhau", "Tự tổ chức 'concert' tại nhà", "Chụp ảnh cho nhau"
+    "Chơi game đối kháng", "Vẽ/tô màu cùng nhau", "Tự tổ chức 'concert' tại nhà", "Đi bộ/chạy bộ", "Chụp ảnh cho nhau"
   ]
 };
 const WHEEL_COLORS = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF"];
@@ -733,34 +733,34 @@ let currentWheelGroup = "Ăn gì";
 /* Love language quiz data */
 const LL_QUESTIONS = [
   {
-    q: "Khi người iu làm điều gì đó khiến ní thấy hạnh phúc nhất, đó thường là...",
+    q: "Khi người iu làm điều gì đó khiến Trịnh thấy hạnh phúc nhất, đó thường là...",
     opts: [
-      { t:"Họ nói 'em tự hào về anh'", lang:"words" },
-      { t:"Họ chủ động giúp ní việc gì đó mà không cần nhờ", lang:"acts" },
-      { t:"Họ tặng một món quà nhỏ dù chẳng cần dịp gì", lang:"gifts" },
-      { t:"Họ dành cả buổi hẹn chỉ ở bên ní, hong làm việc riêng", lang:"time" }
+      { t:"Ẻm nói 'em tự hào về anh'", lang:"words" },
+      { t:"Ẻm chủ động giúp anh việc gì đó mà không cần nhờ", lang:"acts" },
+      { t:"Ẻm tặng anh một món quà nhỏ dù chẳng cần dịp gì", lang:"gifts" },
+      { t:"Ẻm dành cả buổi hẹn chỉ ở bên anh và hong làm việc riêng", lang:"time" }
     ]
   },
   {
-    q: "Nếu có một ngày mệt mỏi, ní muốn người iu...",
+    q: "Nếu có một ngày mệt mỏi, Trịnh muốn người iu...",
     opts: [
-      { t:"Nhắn tin động viên quan tâm ní", lang:"words" },
-      { t:"Đừng lại gần ní, hãy để ní yên", lang:"acts" },
-      { t:"Mua đồ ăn cho ní", lang:"gifts" },
-      { t:"Gặp nhau và ngồi cạnh ní, hong cần nói gì nhiều", lang:"touch" }
+      { t:"Nhắn tin động viên quan tâm anh", lang:"words" },
+      { t:"Đừng lại gần anh, hãy để anh yên", lang:"acts" },
+      { t:"Mua đồ ăn cho anh...hoặc ăn cùng", lang:"gifts" },
+      { t:"Gặp nhau và ngồi cạnh anh, hong cần nói gì nhiều", lang:"touch" }
     ]
   },
   {
-    q: "Ní dễ tổn thương nhất khi người iu...",
+    q: "Trịnh dễ tổn thương nhất khi người iu...",
     opts: [
       { t:"Nói những lời thờ ơ nguội lạnh hoặc chê bai", lang:"words" },
       { t:"Hứa giúp việc gì đó rồi hong làm", lang:"acts" },
       { t:"Quên những dịp quan trọng", lang:"gifts" },
-      { t:"Luôn bận rộn, ít thời gian dành cho ní", lang:"time" }
+      { t:"Luôn bận rộn, ít thời gian dành cho anh", lang:"time" }
     ]
   },
   {
-    q: "Với ní, một buổi hẹn hò lý tưởng là...",
+    q: "Với Trịnh, một buổi hẹn hò lý tưởng là...",
     opts: [
       { t:"Được tâm sự thật lòng và nghe những lời yêu thương", lang:"words" },
       { t:"Cùng nhau làm một điều gì đó thật vui, ví dụ nấu ăn chung", lang:"acts" },
@@ -769,40 +769,40 @@ const LL_QUESTIONS = [
     ]
   },
   {
-    q: "Ní thể hiện tình cảm với người iu chủ yếu bằng cách...",
+    q: "Trịnh thể hiện tình cảm với người iu chủ yếu bằng cách...",
     opts: [
-      { t:"Nói lời yêu thương và thường xuyên dành lời khen cho họ", lang:"words" },
-      { t:"Ít nói lời ngọt ngào nhưng chủ động giúp đỡ và chăm sóc họ từ những việc nhỏ nhất", lang:"acts" },
+      { t:"Nói lời yêu thương và thường xuyên dành lời khen cho ẻm", lang:"words" },
+      { t:"Ít nói lời ngọt ngào nhưng chủ động giúp đỡ và chăm sóc ẻm từ những việc nhỏ nhất", lang:"acts" },
       { t:"Luôn nhớ những điều người iu thích để chọn quà đúng ý", lang:"gifts" },
-      { t:"Skinship (nắm tay, ôm, thơm, cho họ cảm giác ní luôn hiện diện)", lang:"touch" }
+      { t:"Skinship (nắm tay, ôm, thơm, cho ẻm cảm giác anh luôn hiện diện)", lang:"touch" }
     ]
   },
   {
-    q: "Điều bạn nhớ lâu nhất về người iu thường là...",
+    q: "Điều Trịnh nhớ lâu nhất về người iu thường là...",
     opts: [
-      { t:"Một lời động viên đúng lúc ní cần nhất", lang:"words" },
-      { t:"Một hành động khiến ní cảm thấy được yêu thương", lang:"acts" },
-      { t:"Một món quà họ tự tay chuẩn bị cho ní", lang:"gifts" },
+      { t:"Một lời động viên đúng lúc anh cần nhất", lang:"words" },
+      { t:"Một hành động khiến anh cảm thấy được yêu thương", lang:"acts" },
+      { t:"Một món quà ẻm tự tay chuẩn bị cho anh", lang:"gifts" },
       { t:"Một khoảnh khắc nào đó cả 2 ngồi tâm sự", lang:"time" }
     ]
   },
   {
-    q: "Khi giận nhau, điều gì khiến ní nguôi giận nhanh nhất?",
+    q: "Khi giận nhau, điều gì khiến Trịnh nguôi giận nhanh nhất?",
     opts: [
-      { t:"Người iu công nhận cảm xúc của ní, nói ra cảm xúc và cùng ní tháo gỡ", lang:"words" },
+      { t:"Người iu công nhận cảm xúc của anh, nói ra cảm xúc và cùng anh tháo gỡ", lang:"words" },
       { t:"Người iu thay đổi hành động để chuyện đó không lặp lại", lang:"acts" },
       { t:"Một món quà nhỏ thay cho lời muốn làm hòa", lang:"gifts" },
-      { t:"Dù giận nhau nhưng hong lạnh nhạt, vẫn làm ní cảm giác được đây chỉ là bất hoà tạm thời, chúng mình vẫn iu nhau mà", lang:"touch" }
+      { t:"Dù giận nhau nhưng hong lạnh nhạt, vẫn làm anh cảm giác được đây chỉ là bất hoà tạm thời, chúng mình vẫn iu nhau mà", lang:"touch" }
     ]
   }
 ];
  
 const LL_INFO = {
-  words: { icon:"💬", name:"Lời Khẳng Định (Words of Affirmation)", desc:"Ní cảm nhận tình yêu rõ nhất qua lời nói — một câu khen, một lời động viên, một câu 'em yêu anh' đúng lúc có giá trị rất lớn với ní đó." },
-  acts: { icon:"🛠️", name:"Hành Động Chăm Sóc (Acts of Service)", desc:"Với ní, hành động nói lên tất cả. Khi người iu chủ động giúp đỡ, làm việc gì đó vì ní, đó chính là cách họ nói 'em yêu anh' rõ ràng nhất." },
-  gifts: { icon:"🎁", name:"Quà Tặng (Receiving Gifts)", desc:"Không phải vì giá trị món quà, mà vì ní cảm nhận được sự quan tâm và suy nghĩ đằng sau nó. Một món quà nhỏ đúng lúc khiến ní thấy được iu." },
-  time: { icon:"⏳", name:"Thời Gian Chất Lượng (Quality Time)", desc:"Ní trân trọng nhất là sự hiện diện trọn vẹn — không điện thoại, không xao nhãng, chỉ có hai người thật sự ở bên nhau thoy." },
-  touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với ní nhiều hơn cả ngàn lời nói." }
+  words: { icon:"💬", name:"Lời Khẳng Định (Words of Affirmation)", desc:"Anh cảm nhận tình yêu rõ nhất qua lời nói — một câu khen, một lời động viên, một câu 'em yêu anh' đúng lúc có giá trị rất lớn với anh đó." },
+  acts: { icon:"🛠️", name:"Hành Động Chăm Sóc (Acts of Service)", desc:"Với anh, hành động nói lên tất cả. Khi người iu chủ động giúp đỡ, làm việc gì đó vì anh, đó chính là cách ẻm nói 'em yêu anh' rõ ràng nhất." },
+  gifts: { icon:"🎁", name:"Quà Tặng (Receiving Gifts)", desc:"Không phải vì giá trị món quà, mà vì anh cảm nhận được sự quan tâm và suy nghĩ đằng sau nó. Một món quà nhỏ đúng lúc khiến anh thấy được iu." },
+  time: { icon:"⏳", name:"Thời Gian Chất Lượng (Quality Time)", desc:"Anh trân trọng nhất là sự hiện diện trọn vẹn — không điện thoại, không xao nhãng, chỉ có hai người thật sự ở bên nhau thoy." },
+  touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với anh nhiều hơn cả ngàn lời nói." }
 };
  
 /* ---------- NAVIGATION ---------- */
@@ -848,9 +848,9 @@ function getDrawStatus(){
   const today = new Date().toISOString().slice(0,10);
   const lastDraw = localStorage.getItem('trinhiu_lastDrawDate');
   if(lastDraw === today){
-    return '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nha 💚';
+    return '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nghen 💚';
   }
-  return '🎴 Anh ơi, anh được rút 1 lá bài hôm nay';
+  return '🎴 Anh này, anh được rút 1 lá bài hôm nay';
 }
  
 function resetDraw(){
@@ -885,7 +885,7 @@ function pickCard(el){
   localStorage.setItem('trinhiu_lastDrawDate', today);
   
   // Cập nhật trạng thái
-  document.getElementById('draw-status').textContent = '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nha 💚';
+  document.getElementById('draw-status').textContent = '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nghen 💚';
   document.getElementById('reshuffle-btn').style.display = 'none';
   
   // Hiển thị kết quả
@@ -1130,11 +1130,11 @@ function addLeaf(){
 }
 function renderTree(){
   const list = getLeaves();
-  document.getElementById('tree-count').textContent = `🍃 ${list.length} lá biết ơn đã được thêm`;
+  document.getElementById('tree-count').textContent = `🍃 ${list.length} lá biết ơn đã được thêm gòy`;
   buildTreeSVG(list.length);
   const container = document.getElementById('leaf-list');
   if(list.length===0){
-    container.innerHTML = '<div class="empty-msg">Cây còn trơ trụi 🌱<br>Thêm lá đầu tiên phía trên nhé!</div>';
+    container.innerHTML = '<div class="empty-msg">Cây còn trơ trụi 🌱<br>Trịnh iu mở hàng thêm lá đầu tiên nào!</div>';
     return;
   }
   container.innerHTML = [...list].reverse().map(item=>`
@@ -1189,7 +1189,7 @@ function renderPromises(){
   const list = getPromises();
   const container = document.getElementById('promise-list');
   if(list.length===0){
-    container.innerHTML = '<div class="empty-msg">Chưa có lời hứa nào 🤝<br>Viết lời hứa đầu tiên phía trên nhé!</div>';
+    container.innerHTML = '<div class="empty-msg">Sách vở trống trơn 🤝<br>Làm liền con beat số 1 nha bae!</div>';
     return;
   }
   container.innerHTML = list.map((item,i)=>`

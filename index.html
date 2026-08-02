@@ -38,7 +38,7 @@
     position:relative;
     padding:28px 20px 60px;
   }
-
+ 
   .eyebrow{
     text-align:center;
     font-family:'Baloo 2', sans-serif;
@@ -98,11 +98,11 @@
     margin-top:2px;
     letter-spacing:0.2px;
   }
-
+ 
   .screen{ display:none; animation: fadeIn .35s ease; }
   .screen.active{ display:block; }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
-
+ 
   .back-btn{
     background:none;
     border:none;
@@ -116,7 +116,7 @@
     align-items:center;
     gap:4px;
   }
-
+ 
   /* Lời khuyên hôm nay */
   .advice-box{
     background:#fff;
@@ -163,7 +163,7 @@
     color:var(--pink-deep);
     border:2px solid var(--pink-deep);
   }
-
+ 
   .empty-msg{
     text-align:center;
     color:var(--sage-deep);
@@ -171,7 +171,7 @@
     font-family:'Baloo 2', sans-serif;
     padding:30px 10px;
   }
-
+ 
   /* Card draw */
   .card-table{
     display:grid;
@@ -209,7 +209,7 @@
     font-weight:700;
     font-size:16px;
   }
-
+ 
   /* Wheel */
   .wheel-tabs{
     display:flex;
@@ -274,7 +274,7 @@
     font-size:16px;
     color:var(--sage-deep);
   }
-
+ 
   /* Love counter */
   .counter-setup{
     background:#fff;
@@ -351,7 +351,7 @@
   .milestone-row:last-child{ border-bottom:none; }
   .milestone-row.done{ color:var(--sage-deep); }
   .milestone-row.next{ color:var(--pink-deep); font-weight:800; }
-
+ 
   /* Love language quiz */
   .ll-option{
     display:block;
@@ -411,7 +411,7 @@
     border-radius:999px;
     transition: width .6s ease;
   }
-
+ 
   /* Shared form elements for new features */
   .write-box{
     background:#fff;
@@ -441,69 +441,7 @@
     background:#fff;
   }
   .form-textarea{ min-height:70px; resize:vertical; }
-
-  /* Sync code overlay */
-  .sync-overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
-  }
-  .sync-modal{
-    background:#fff;
-    border-radius:24px;
-    padding:28px 24px;
-    max-width:320px;
-    text-align:center;
-    box-shadow:0 20px 60px rgba(0,0,0,0.3);
-  }
-  .sync-modal h2{
-    font-family:'Baloo 2', sans-serif;
-    font-size:20px;
-    font-weight:800;
-    color:var(--pink-deep);
-    margin:0 0 12px;
-  }
-  .sync-modal p{
-    font-size:13px;
-    color:var(--sage-deep);
-    margin:0 0 18px;
-    line-height:1.5;
-  }
-  .sync-modal input{
-    width:100%;
-    padding:12px;
-    border-radius:12px;
-    border:2px solid var(--pink);
-    font-family:'Baloo 2', sans-serif;
-    font-weight:700;
-    font-size:18px;
-    text-align:center;
-    letter-spacing:2px;
-    margin-bottom:16px;
-    color:var(--pink-deep);
-  }
-  .sync-modal button{
-    width:100%;
-    padding:12px;
-    border-radius:12px;
-    border:none;
-    background:var(--pink-deep);
-    color:#fff;
-    font-family:'Baloo 2', sans-serif;
-    font-weight:700;
-    font-size:14px;
-    cursor:pointer;
-    margin-bottom:8px;
-  }
-  .sync-modal button:active{ transform:scale(0.98); }
-
+ 
   /* Cây biết ơn */
   .tree-wrap{ display:flex; justify-content:center; margin:6px 0 16px; }
   .tree-count{
@@ -530,7 +468,7 @@
     font-weight:700;
     margin-bottom:3px;
   }
-
+ 
   /* Lời hứa nhỏ */
   .promise-item{
     background:#fff;
@@ -558,24 +496,14 @@
     font-weight:700;
     margin-bottom:3px;
   }
-
+ 
 </style>
 </head>
 <body>
 <div class="phone">
-  <!-- SYNC CODE MODAL -->
-  <div id="sync-overlay" class="sync-overlay" style="display:none;">
-    <div class="sync-modal">
-      <h2>🔗 Sync Code</h2>
-      <p>Nhập code giống nhau để 2 người xem được dữ liệu của nhau</p>
-      <input type="text" id="sync-code-input" placeholder="VD: ABC123" maxlength="20">
-      <button onclick="confirmSyncCode()">ĐẶT CODE</button>
-    </div>
-  </div>
-
   <div class="eyebrow">Welcome To Em Trâm's Shop</div>
   <h1 class="title">TRỊNH IU<br>CHỌN ĐI 💗</h1>
-
+ 
   <!-- MAIN MENU -->
   <div id="screen-menu" class="screen active">
     <div class="card">
@@ -609,7 +537,7 @@
       </button>
     </div>
   </div>
-
+ 
   <!-- ADVICE OF THE DAY -->
   <div id="screen-advice" class="screen">
     <div class="card">
@@ -621,7 +549,7 @@
       <button class="action-btn" onclick="newAdvice()">RÚT LỜI KHUYÊN KHÁC 🔁</button>
     </div>
   </div>
-
+ 
    <!-- CARD DRAW -->
   <div id="screen-draw" class="screen">
     <div class="card">
@@ -632,7 +560,7 @@
       <button class="action-btn secondary" onclick="resetDraw()" style="display:none;" id="reshuffle-btn">TRÁO BÀI LẠI 🔀</button>
     </div>
   </div>
-
+ 
   <!-- WHEEL -->
   <div id="screen-wheel" class="screen">
     <div class="card">
@@ -641,7 +569,9 @@
       <div class="wheel-tabs" id="wheel-tabs"></div>
       <div class="wheel-wrap">
         <div class="pointer"></div>
-        <svg id="wheel" viewBox="0 0 200 200"></svg>
+        <div id="wheel-container" style="position:relative; width:260px; height:260px;">
+          <svg id="wheel" viewBox="0 0 200 200" width="260" height="260"></svg>
+        </div>
       </div>
       <button class="action-btn" onclick="spinWheel()">QUAY LIỀN ĐI 🎡</button>
       <div class="wheel-result" id="wheel-result">
@@ -649,18 +579,18 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- LOVE COUNTER -->
   <div id="screen-counter" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-
+ 
       <div id="counter-setup-box" class="counter-setup">
         <label>Hai đứa mình bắt đầu yêu từ ngày nào?</label>
         <input type="date" id="counter-date-input">
         <button class="action-btn" onclick="saveLoveDate()">LƯU LẠI 💾</button>
       </div>
-
+ 
       <div id="counter-result-box" style="display:none;">
         <div class="counter-display">
           <div class="counter-number" id="counter-days">0</div>
@@ -675,18 +605,18 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- LOVE LANGUAGE QUIZ -->
   <div id="screen-lovelang" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-
+ 
       <div id="ll-quiz-box">
         <div class="quiz-progress" id="ll-progress"></div>
         <div class="quiz-q" id="ll-question" style="margin-bottom:16px;"></div>
         <div id="ll-options"></div>
       </div>
-
+ 
       <div id="ll-result-box" style="display:none;">
         <div class="ll-result-box">
           <span class="ll-result-icon" id="ll-result-icon"></span>
@@ -698,12 +628,11 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- CÂY BIẾT ƠN -->
   <div id="screen-tree" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <button class="action-btn secondary" style="font-size:12px; padding:8px; margin-bottom:12px;" onclick="changeSyncCode()">🔗 Đổi Sync Code</button>
       <div class="write-box">
         <div class="form-group">
           <label class="form-label">Hôm nay anh biết ơn điều gì ở người iu?</label>
@@ -718,12 +647,11 @@
       <div id="leaf-list"></div>
     </div>
   </div>
-
+ 
   <!-- LỜI HỨA NHỎ -->
   <div id="screen-promise" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <button class="action-btn secondary" style="font-size:12px; padding:8px; margin-bottom:12px;" onclick="changeSyncCode()">🔗 Đổi Sync Code</button>
       <div class="write-box">
         <div class="form-group">
           <label class="form-label">Ai hứa?</label>
@@ -741,10 +669,10 @@
       <div id="promise-list"></div>
     </div>
   </div>
-
-
+ 
+ 
 </div>
-
+ 
 <script>
 /* ---------- DATA (mẫu gợi ý, có thể tự chỉnh sửa) ---------- */
 const ADVICE_LIST = [
@@ -772,7 +700,7 @@ const ADVICE_LIST = [
   "Nếu Trâm nói 'em ổn mà', anh hãy kiểm tra thêm một lần nhen. Đây là bug phổ biến của con người",
   "Đừng ngại thể hiện tình cảm trước mặt người khác một chút nhá, nếu tụi mình đều thoải mái"
 ];
-
+ 
 const DRAW_CARDS = [
   { icon:"🧋", text:"Chụp màn hình gửi liền, người iu sẽ order nước cho anh" },
   { icon:"🍜", text:"Thời tới 🙈 Người iu sẽ nấu một món ăn yêu thích của anh" },
@@ -783,7 +711,7 @@ const DRAW_CARDS = [
   { icon:"🎁", text:"Trịnh đang muốn mua gì hong? Em Trâm tặng anh nhá" },
   { icon:"🛏️", text:"Ây daaa. Anh được 1 lần không phục vụ, em Trâm làm tất" }
 ];
-
+ 
 /* Vòng quay hẹn hò — chia theo nhóm */
 const WHEEL_GROUPS = {
   "Ăn gì": [
@@ -801,7 +729,7 @@ const WHEEL_GROUPS = {
 };
 const WHEEL_COLORS = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF"];
 let currentWheelGroup = "Ăn gì";
-
+ 
 /* Love language quiz data */
 const LL_QUESTIONS = [
   {
@@ -868,7 +796,7 @@ const LL_QUESTIONS = [
     ]
   }
 ];
-
+ 
 const LL_INFO = {
   words: { icon:"💬", name:"Lời Khẳng Định (Words of Affirmation)", desc:"Ní cảm nhận tình yêu rõ nhất qua lời nói — một câu khen, một lời động viên, một câu 'em yêu anh' đúng lúc có giá trị rất lớn với ní đó." },
   acts: { icon:"🛠️", name:"Hành Động Chăm Sóc (Acts of Service)", desc:"Với ní, hành động nói lên tất cả. Khi người iu chủ động giúp đỡ, làm việc gì đó vì ní, đó chính là cách họ nói 'em yêu anh' rõ ràng nhất." },
@@ -876,7 +804,7 @@ const LL_INFO = {
   time: { icon:"⏳", name:"Thời Gian Chất Lượng (Quality Time)", desc:"Ní trân trọng nhất là sự hiện diện trọn vẹn — không điện thoại, không xao nhãng, chỉ có hai người thật sự ở bên nhau thoy." },
   touch: { icon:"🤍", name:"Đụng Chạm Thân Mật (Physical Touch)", desc:"Một cái nắm tay, một cái ôm, một cử chỉ thân mật nói với ní nhiều hơn cả ngàn lời nói." }
 };
-
+ 
 /* ---------- NAVIGATION ---------- */
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -888,7 +816,7 @@ function showScreen(name){
   if(name==='tree') renderTree();
   if(name==='promise') renderPromises();
 }
-
+ 
 /* ---------- ADVICE ---------- */
 function dayIndexSeed(){
   const d = new Date();
@@ -906,7 +834,7 @@ function newAdvice(){
   const idx = Math.floor(Math.random()*ADVICE_LIST.length);
   loadTodayAdvice(idx);
 }
-
+ 
 /* ---------- CARD DRAW ---------- */
 let drawOrder = [];
  
@@ -968,68 +896,108 @@ function pickCard(el){
     </div>
   `;
 }
-
-/* ---------- WHEEL (có nhóm) ---------- */
+ 
+/* ---------- WHEEL (8 ô cố định) ---------- */
 let currentRotation = 0;
+const WHEEL_COLORS_8 = ["#EE7FA6","#F7C6D9","#8FAE8B","#CFE3EF","#D94C7B","#A9C7A3","#5F8360","#F7C6D9"];
+ 
 function initWheelScreen(){
   const tabsWrap = document.getElementById('wheel-tabs');
   tabsWrap.innerHTML = Object.keys(WHEEL_GROUPS).map(g =>
     `<button class="wheel-tab ${g===currentWheelGroup?'active':''}" onclick="switchWheelGroup('${g}')">${g}</button>`
   ).join('');
   document.getElementById('wheel-result').classList.remove('show');
-  buildWheel();
+  buildWheel8();
 }
-function switchWheelGroup(g){
-  currentWheelGroup = g;
-  currentRotation = 0;
-  document.getElementById('wheel').style.transition = 'none';
-  document.getElementById('wheel').style.transform = 'rotate(0deg)';
-  requestAnimationFrame(()=>{ document.getElementById('wheel').style.transition = 'transform 4s cubic-bezier(.17,.67,.21,1)'; });
-  initWheelScreen();
-}
-function buildWheel(){
+ 
+function buildWheel8(){
   const svg = document.getElementById('wheel');
-  const options = WHEEL_GROUPS[currentWheelGroup];
-  const n = options.length;
   const cx=100, cy=100, r=100;
   let paths = '';
-  for(let i=0;i<n;i++){
-    const startAngle = (i/n)*2*Math.PI - Math.PI/2;
-    const endAngle = ((i+1)/n)*2*Math.PI - Math.PI/2;
+  
+  // 8 ô, không có chữ bên trong
+  for(let i=0;i<8;i++){
+    const startAngle = (i/8)*2*Math.PI - Math.PI/2;
+    const endAngle = ((i+1)/8)*2*Math.PI - Math.PI/2;
     const x1 = cx + r*Math.cos(startAngle);
     const y1 = cy + r*Math.sin(startAngle);
     const x2 = cx + r*Math.cos(endAngle);
     const y2 = cy + r*Math.sin(endAngle);
-    paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 0,1 ${x2},${y2} Z" fill="${WHEEL_COLORS[i % WHEEL_COLORS.length]}" stroke="#fff" stroke-width="1.5"/>`;
-    const midAngle = (startAngle+endAngle)/2;
-    const tx = cx + (r*0.62)*Math.cos(midAngle);
-    const ty = cy + (r*0.62)*Math.sin(midAngle);
-    const rotDeg = (midAngle*180/Math.PI)+90;
-    paths += `<text x="${tx}" y="${ty}" font-size="6.5" font-family="Baloo 2, sans-serif" font-weight="700" fill="#5B4636" text-anchor="middle" transform="rotate(${rotDeg} ${tx} ${ty})">${wrapText(options[i])}</text>`;
+    paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 0,1 ${x2},${y2} Z" fill="${WHEEL_COLORS_8[i]}" stroke="#fff" stroke-width="2"/>`;
   }
   svg.innerHTML = paths;
 }
-function wrapText(t){
-  return t.length > 16 ? t.slice(0,15)+'…' : t;
+ 
+function switchWheelGroup(g){
+  currentWheelGroup = g;
+  currentRotation = 0;
+  const svg = document.getElementById('wheel');
+  svg.style.transition = 'none';
+  svg.style.transform = 'rotate(0deg)';
+  
+  // Highlight tab được chọn
+  document.querySelectorAll('.wheel-tab').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  requestAnimationFrame(()=>{ svg.style.transition = 'transform 4s cubic-bezier(.17,.67,.21,1)'; });
+  buildWheel8();
 }
+ 
+function buildWheel8(){
+  const svg = document.getElementById('wheel');
+  const cx=100, cy=100, r=100;
+  let paths = '';
+  
+  // Xác định ô highlight dựa trên tab được chọn
+  // "Ăn gì" = 0, "Đi đâu" = 1, "Làm gì" = 2 (chia 8 ô cho 3 nhóm)
+  const groupOrder = Object.keys(WHEEL_GROUPS);
+  const groupIndex = groupOrder.indexOf(currentWheelGroup);
+  // Mỗi nhóm lấy 8/3 ≈ 2-3 ô, ở đây ta highlight ô top (ô 0) khi là "Ăn gì"
+  // Hoặc highlight ô theo thứ tự nhóm
+  const highlightSegment = groupIndex; // ô được highlight
+  
+  // 8 ô, không có chữ bên trong
+  for(let i=0;i<8;i++){
+    const startAngle = (i/8)*2*Math.PI - Math.PI/2;
+    const endAngle = ((i+1)/8)*2*Math.PI - Math.PI/2;
+    const x1 = cx + r*Math.cos(startAngle);
+    const y1 = cy + r*Math.sin(startAngle);
+    const x2 = cx + r*Math.cos(endAngle);
+    const y2 = cy + r*Math.sin(endAngle);
+    
+    // Nếu là ô được highlight, dùng màu hồng đậm
+    const fillColor = i === highlightSegment ? '#D94C7B' : WHEEL_COLORS_8[i];
+    
+    paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 0,1 ${x2},${y2} Z" fill="${fillColor}" stroke="#fff" stroke-width="2"/>`;
+  }
+  svg.innerHTML = paths;
+}
+ 
 function spinWheel(){
   const options = WHEEL_GROUPS[currentWheelGroup];
-  const n = options.length;
-  const chosen = Math.floor(Math.random()*n);
-  const degPerSlice = 360/n;
-  const targetCenter = chosen*degPerSlice + degPerSlice/2;
-  const spins = 5*360;
-  const finalRotation = spins + (360 - targetCenter);
-  currentRotation += finalRotation;
+  const chosen = Math.floor(Math.random()*options.length);
+  
+  // 8 ô, kim chỉ ở top (angle 0)
+  // Mỗi ô = 45°, kim cần dừng ở giữa ô = 22.5° offset
+  const degPerSegment = 360/8;
+  const segmentAngle = chosen * degPerSegment + degPerSegment / 2; // Giữa ô
+  
+  // Random xoay nhiều vòng rồi dừng ở giữa ô
+  const spins = 5 + Math.floor(Math.random()*4); // 5-8 vòng
+  const totalDegrees = spins * 360 + segmentAngle;
+  
   const svg = document.getElementById('wheel');
-  svg.style.transform = `rotate(${currentRotation}deg)`;
+  svg.style.transform = `rotate(${totalDegrees}deg)`;
   document.getElementById('wheel-result').classList.remove('show');
+  
   setTimeout(()=>{
     document.getElementById('wheel-result-text').textContent = "💚 " + options[chosen];
     document.getElementById('wheel-result').classList.add('show');
+    // Reset rotation để lần quay tiếp theo quay từ đầu
+    currentRotation = totalDegrees;
   }, 4100);
 }
-
+ 
 /* ---------- LOVE COUNTER ---------- */
 const MILESTONES = [
   { days: 30, label: "Tròn 1 tháng" },
@@ -1071,12 +1039,12 @@ function renderCounter(){
   const start = new Date(dateStr + 'T00:00:00');
   const now = new Date();
   const diffDays = Math.floor((now - start) / 86400000);
-
+ 
   document.getElementById('counter-setup-box').style.display = 'none';
   document.getElementById('counter-result-box').style.display = 'block';
   document.getElementById('counter-days').textContent = diffDays >= 0 ? diffDays : 0;
   document.getElementById('counter-since').textContent = "kể từ ngày " + start.toLocaleDateString('vi-VN');
-
+ 
   const list = document.getElementById('milestone-list');
   let nextShown = false;
   list.innerHTML = MILESTONES.map(m => {
@@ -1088,7 +1056,7 @@ function renderCounter(){
     return `<div class="milestone-row ${cls}"><span>${m.label}</span><span>${rightText}</span></div>`;
   }).join('');
 }
-
+ 
 /* ---------- LOVE LANGUAGE QUIZ ---------- */
 let llIndex = 0;
 let llScores = {};
@@ -1119,7 +1087,7 @@ function answerLL(lang){
 function showLLResult(){
   document.getElementById('ll-quiz-box').style.display = 'none';
   document.getElementById('ll-result-box').style.display = 'block';
-
+ 
   let topLang = 'words', topScore = -1;
   for(const k in llScores){
     if(llScores[k] > topScore){ topScore = llScores[k]; topLang = k; }
@@ -1128,7 +1096,7 @@ function showLLResult(){
   document.getElementById('ll-result-icon').textContent = info.icon;
   document.getElementById('ll-result-name').textContent = info.name;
   document.getElementById('ll-result-desc').textContent = info.desc;
-
+ 
   const total = LL_QUESTIONS.length;
   const order = ['words','acts','gifts','time','touch'];
   document.getElementById('ll-bars').innerHTML = order.map(k => {
@@ -1141,47 +1109,14 @@ function showLLResult(){
     `;
   }).join('');
 }
-
-/* ---------- SYNC CODE ---------- */
-function getSyncCode(){
-  return localStorage.getItem('trinhiu_sync_code') || '';
-}
-function setSyncCode(code){
-  localStorage.setItem('trinhiu_sync_code', code);
-}
-function confirmSyncCode(){
-  const code = document.getElementById('sync-code-input').value.trim().toUpperCase();
-  if(!code){ alert('Vui lòng nhập code'); return; }
-  setSyncCode(code);
-  document.getElementById('sync-overlay').style.display = 'none';
-  showScreen('menu');
-}
-function showSyncCodeModal(){
-  const existing = getSyncCode();
-  if(existing) return; // Nếu đã có code, không hiện modal
-  document.getElementById('sync-overlay').style.display = 'flex';
-  document.getElementById('sync-code-input').focus();
-}
-function changeSyncCode(){
-  const newCode = prompt('Nhập Sync Code mới:', getSyncCode());
-  if(newCode){
-    setSyncCode(newCode.trim().toUpperCase());
-    renderTree();
-    renderPromises();
-  }
-}
-
+ 
 /* ---------- CÂY BIẾT ƠN ---------- */
 function getLeaves(){
-  const code = getSyncCode();
-  const key = code ? `trinhiu_leaves_${code}` : 'trinhiu_leaves';
-  try{ return JSON.parse(localStorage.getItem(key) || '[]'); }
+  try{ return JSON.parse(localStorage.getItem('trinhiu_leaves') || '[]'); }
   catch(e){ return []; }
 }
 function saveLeaves(list){
-  const code = getSyncCode();
-  const key = code ? `trinhiu_leaves_${code}` : 'trinhiu_leaves';
-  localStorage.setItem(key, JSON.stringify(list));
+  localStorage.setItem('trinhiu_leaves', JSON.stringify(list));
 }
 function addLeaf(){
   const ta = document.getElementById('leaf-input');
@@ -1224,18 +1159,14 @@ function buildTreeSVG(n){
   }
   svg.innerHTML = html;
 }
-
+ 
 /* ---------- LỜI HỨA NHỎ ---------- */
 function getPromises(){
-  const code = getSyncCode();
-  const key = code ? `trinhiu_promises_${code}` : 'trinhiu_promises';
-  try{ return JSON.parse(localStorage.getItem(key) || '[]'); }
+  try{ return JSON.parse(localStorage.getItem('trinhiu_promises') || '[]'); }
   catch(e){ return []; }
 }
 function savePromises(list){
-  const code = getSyncCode();
-  const key = code ? `trinhiu_promises_${code}` : 'trinhiu_promises';
-  localStorage.setItem(key, JSON.stringify(list));
+  localStorage.setItem('trinhiu_promises', JSON.stringify(list));
 }
 function addPromise(){
   const who = document.getElementById('promise-who').value;
@@ -1271,11 +1202,7 @@ function renderPromises(){
     </div>
   `).join('');
 }
-
-/* ---------- INIT ON LOAD ---------- */
-document.addEventListener('DOMContentLoaded', function(){
-  showSyncCodeModal();
-});
+ 
 </script>
 </body>
 </html>

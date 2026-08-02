@@ -597,7 +597,7 @@
       </button>
       <button class="menu-btn" onclick="showScreen('lovelang'); startLoveLang();">
         LOVE LANGUAGE QUIZ
-        <span class="sub">tìm ngôn ngữ tình yêu của anh và em</span>
+        <span class="sub">tìm ngôn ngữ tình yêu của anh</span>
       </button>
       <button class="menu-btn" onclick="showScreen('tree')">
         CÂY BIẾT ƠN
@@ -626,7 +626,7 @@
   <div id="screen-draw" class="screen">
     <div class="card">
       <button class="back-btn" onclick="showScreen('menu')">← Quay lại</button>
-      <div class="date-tag" id="draw-status">🎴 Bạn được rút 1 lá bài hôm nay</div>
+      <div class="date-tag" id="draw-status">🎴 Anh ơi, anh được rút 1 lá bài hôm nay</div>
       <div class="card-table" id="card-table"></div>
       <div id="draw-result"></div>
       <button class="action-btn secondary" onclick="resetDraw()" style="display:none;" id="reshuffle-btn">TRÁO BÀI LẠI 🔀</button>
@@ -706,7 +706,7 @@
       <button class="action-btn secondary" style="font-size:12px; padding:8px; margin-bottom:12px;" onclick="changeSyncCode()">🔗 Đổi Sync Code</button>
       <div class="write-box">
         <div class="form-group">
-          <label class="form-label">Hôm nay bạn biết ơn điều gì ở người iu?</label>
+          <label class="form-label">Hôm nay anh biết ơn điều gì ở người iu?</label>
           <textarea class="form-textarea" id="leaf-input" placeholder="Ví dụ: cảm ơn vì đã..."></textarea>
         </div>
         <button class="action-btn" onclick="addLeaf()">THÊM LÁ MỚI 🍃</button>
@@ -748,36 +748,40 @@
 <script>
 /* ---------- DATA (mẫu gợi ý, có thể tự chỉnh sửa) ---------- */
 const ADVICE_LIST = [
-  "Đừng chờ một dịp đặc biệt để nói yêu. Hãy nói 'I miss u' lúc 2 giờ chiều",
-  "Lời nói lúc tức giận thường mang theo gai nhọn, hãy chậm lại 5s để giữ lấy dịu dàng",
+  "Đừng chờ một dịp đặc biệt để nói yêu. Hãy nói 'I miss u' lúc 2 giờ chiềuu",
+  "Hôm nay ra đường anh nhớ kiểm tra lốp xe đã căng và bình xăng đã đầy nhá",
   "Một mối quan hệ được tưới bằng những điều nhỏ bé sẽ nở hoa lâu hơn những lời hứa lớn lao",
-  "Đừng so sánh mối quan hệ của mình với ai khác — mỗi cặp đôi có nhịp riêng mà",
-  "Đừng yêu phiên bản hoàn hảo trong tưởng tượng. Hãy yêu cả những ngày người ấy hơi khó chiều",
-  "Kỷ niệm đẹp không tự xuất hiện, nó được tạo ra từ những khoảnh khắc nhỏ xíu bình thường",
-  "Đừng im lặng khi buồn quá lâu — vì im lặng = bụng bự",
-  "Tự hỏi 'Dạo này mình cần gì ở người yêu nhiều hơn hong?'",
-  "Chăm sóc bản thân tốt cũng là một cách yêu người iu — đừng quên nhé",
-  "Một cái 'ừ' cụt ngủn có thể gây bão cấp 5",
+  "Cái chăn 37 độ ơi, nhớ uống đủ nước và dưỡng môi đều đều nháaa",
+  "Dù bận đến đâu anh cũng nhớ ăn đúng bữa nha, em Trâm cũng cố gắng vậy nè",
+  "Anh ơi, khi buồn đừng im lặng quá lâu, vì im lặng = bụng bự",
+  "Dạo này anh cần gì ở người yêu nhiều hơn hong ạ?",
+  "Chăm sóc bản thân tốt cũng là một cách iu em nèee — đừng quên anh nhé",
+  "Anh ơi, nếu có mang đồ nặng thì nhớ chia bớt ra. Anh hong cần phải ôm hết mọi thứ một mình đâu nè",
+  "Một cái 'ừ' cụt ngủn có thể gây bão cấp 5, èooooo",
+  "Anh ơi lái xe đừng vội, về nhà an toàn anh nghen, embe iu anh <3",
   "Đừng chỉ yêu mùa hoa nở rộ, hãy thương cả những ngày cây thay lá lặng im",
-  "Học cách chấp nhận người iu không hoàn hảo, giống như họ cũng đang chấp nhận điều đó ở bạn",
-  "Đặt điện thoại xuống trong buổi hẹn, để trọn vẹn cho nhau",
-  "Người yêu nói 'anh/em bình thường'... nhưng hệ thống phát hiện 99% khả năng là bất thường",
-  "Nói 'cảm ơn' với những điều nhỏ người iu làm mà bạn hay coi là hiển nhiên",
-  "Người yêu bạn hôm nay có 90% khả năng muốn được ôm. 10% còn lại là họ đang giả vờ hong cần",
-  "Thử hỏi han về gia đình, bạn bè của người iu — quan tâm vòng tròn của họ cũng là quan tâm họ",
-  "Nếu người yêu nói 'em/anh ổn mà', hãy kiểm tra thêm một lần. Đây là bug phổ biến của con người",
-  "Đừng ngại thể hiện tình cảm trước mặt người khác một chút, nếu cả hai đều thoải mái"
+  "Cảm ơn anh vì đã yêu thương cả những lúc em chưa đủ tốt. Em cũng sẽ làm điều đó với anh <3",
+  "Nhìn màn hình lâu rồi thì cho mắt nghỉ 5 phút nào anh iu, đứng lên xoay xoay cái lưng nữa",
+  "Bạn ơi tụi mình cùng đặt điện thoại xuống trong buổi hẹn, để trọn vẹn cho nhau nhá",
+  "Hôm qua anh ngủ đủ chưa dạ? Nếu chưa thì tối nay ang ngủ sớm hơn một chút chíu nha"
+  "Trâm nói 'em bình thường'... nhưng hệ thống phát hiện 99% khả năng là bất thường",
+  "Cà phê ngon thiệt, nhưng anh nhớ uống thêm nước nữa nha",
+  "Hít một hơi thật sâuuu ~ Có thể hôm nay anh hơi mệt, nhưng anh đang làm rất tốt rồi. Trịnh iu giỏi nhất nhà",
+  "Người yêu anh hôm nay có 90% khả năng muốn được ôm. 10% còn lại là ẻm đang giả vờ hong cần",
+  "Trước khi ra khỏi nhà anh nhớ kiểm tra: ví, điện thoại, chìa khóa nhé. Nhớ iu em nữa!!!",
+  "Nếu Trâm nói 'em ổn mà', anh hãy kiểm tra thêm một lần nhen. Đây là bug phổ biến của con người",
+  "Đừng ngại thể hiện tình cảm trước mặt người khác một chút nhá, nếu tụi mình đều thoải mái"
 ];
 
 const DRAW_CARDS = [
-  { icon:"🧋", text:"Chụp màn hình gửi liền, người iu sẽ order nước cho ní" },
-  { icon:"🍜", text:"Người iu phải nấu một món ăn yêu thích của ní" },
-  { icon:"🥹", text:"Em Trâm bị -5đ không lý do. Trịnh nhớ screenshot làm bằng chứng" },
-  { icon:"🎉", text:"Em Trâm được +9đ không lý do. Trịnh hong được coi như chưa thấy" },
-  { icon:"💰", text:"Người iu trả tiền bữa ăn tối kế tiếp" },
-  { icon:"🎁", text:"Trịnh muốn mua gì hong? Nói liền em Trâm sẽ tặng" },
-  { icon:"🛏️", text:"Được 1 lần không phục vụ, người iu làm mọi việc" },
-  { icon:"🌙", text:"Gọi video 15 phút trước khi ngủ dù cả ngày đã nhắn tin nhiều" },
+  { icon:"🧋", text:"Chụp màn hình gửi liền, người iu sẽ order nước cho anh" },
+  { icon:"🍜", text:"Thời tới 🙈 Người iu sẽ nấu một món ăn yêu thích của anh" },
+  { icon:"😱", text:"Em Trâm bị -5đ không lý do. Trịnh nhớ screenshot làm bằng chứng" },
+  { icon:"🤪", text:"Á đù xuiii. Mai quay lại nha bấy bi" },
+  { icon:"🎉", text:"Tá daaaa. Em Trâm được +9đ không lý do. Trịnh hong được coi như chưa thấy đâu" },
+  { icon:"💰", text:"Rồi songgg @@ em Trâm trả tiền bữa ăn tối kế tiếp" },
+  { icon:"🎁", text:"Trịnh đang muốn mua gì hong? Em Trâm tặng anh nhá" },
+  { icon:"🛏️", text:"Ây daaa. Anh được 1 lần không phục vụ, em Trâm làm tất" }
 ];
 
 /* Vòng quay hẹn hò — chia theo nhóm */
@@ -918,7 +922,7 @@ function getDrawStatus(){
   if(lastDraw === today){
     return '✅ Vui thoy đừng vui quá! Ngày mai khách iu quay lại nha 💚';
   }
-  return '🎴 Bạn được rút 1 lá bài hôm nay';
+  return '🎴 Anh ơi, anh được rút 1 lá bài hôm nay';
 }
  
 function resetDraw(){

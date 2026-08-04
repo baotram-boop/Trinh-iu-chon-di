@@ -163,8 +163,197 @@
     color:var(--pink-deep);
     border:2px solid var(--pink-deep);
   }
+  
+   /* Anniversary Modal */
+  .anniversary-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    animation: fadeIn .4s ease;
+  }
+  .anniversary-modal{
+    background:linear-gradient(135deg, #FFE5F0 0%, #FFF7E8 100%);
+    border-radius:28px;
+    padding:40px 30px;
+    max-width:340px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(217,76,123,0.3);
+    position:relative;
+    border:3px solid #EE7FA6;
+    animation: popIn .5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .anniversary-close{
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:none;
+    border:none;
+    font-size:24px;
+    color:#D94C7B;
+    cursor:pointer;
+    width:32px;
+    height:32px;
+  }
+  .anniversary-content{
+    animation: float 3s ease-in-out infinite;
+  }
+  .anniversary-emoji{
+    font-size:60px;
+    margin-bottom:12px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  .anniversary-modal h2{
+    font-family:'Baloo 2', sans-serif;
+    font-size:28px;
+    font-weight:800;
+    color:#D94C7B;
+    margin:0 0 8px;
+  }
+  .anniversary-modal p{
+    font-family:'Baloo 2', sans-serif;
+    font-size:15px;
+    font-weight:700;
+    color:#5F8360;
+    margin:0 0 12px;
+  }
+  .anniversary-time{
+    font-family:'Baloo 2', sans-serif;
+    font-size:24px;
+    font-weight:800;
+    color:#EE7FA6;
+    margin:16px 0;
+  }
  
-  .empty-msg{
+  /* Milestone Modal (2, 3, 4... năm) */
+  .milestone-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(217,76,123,0.8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    animation: milestoneBackgroundPulse 2s ease-in-out infinite;
+  }
+  @keyframes milestoneBackgroundPulse{
+    0%, 100%{ background:rgba(217,76,123,0.8); }
+    50%{ background:rgba(238,127,166,0.9); }
+  }
+  .milestone-modal{
+    background:linear-gradient(135deg, #FFE5F0 0%, #FFF0F5 50%, #FFE5F0 100%);
+    border-radius:32px;
+    padding:50px 35px;
+    max-width:360px;
+    text-align:center;
+    box-shadow:
+      0 0 60px rgba(217,76,123,0.6),
+      0 0 40px rgba(238,127,166,0.4),
+      inset 0 0 40px rgba(255,255,255,0.5);
+    position:relative;
+    border:4px solid #D94C7B;
+    animation: milestonePopIn .6s cubic-bezier(0.26, 1.8, 0.64, 1);
+  }
+  @keyframes milestonePopIn{
+    0%{ transform:scale(0.3) rotate(-10deg); opacity:0; }
+    100%{ transform:scale(1) rotate(0deg); opacity:1; }
+  }
+  .milestone-emoji{
+    font-size:50px;
+    margin-bottom:16px;
+    animation: milestoneEmoji 0.8s ease-in-out;
+  }
+  @keyframes milestoneEmoji{
+    0%{ transform:scale(0) rotate(0deg); }
+    50%{ transform:scale(1.2) rotate(10deg); }
+    100%{ transform:scale(1) rotate(0deg); }
+  }
+  .milestone-title{
+    font-family:'Baloo 2', sans-serif;
+    font-size:32px;
+    font-weight:800;
+    color:#D94C7B;
+    margin:0 0 8px;
+    text-shadow:2px 2px 0 rgba(255,255,255,0.5);
+    animation: titleShine 2s ease-in-out infinite;
+  }
+  @keyframes titleShine{
+    0%, 100%{ color:#D94C7B; }
+    50%{ color:#E94C8B; text-shadow:2px 2px 0 rgba(255,200,200,0.8); }
+  }
+  .milestone-subtitle{
+    font-family:'Baloo 2', sans-serif;
+    font-size:16px;
+    font-weight:700;
+    color:#5F8360;
+    margin:0 0 16px;
+  }
+  .milestone-time{
+    font-family:'Baloo 2', sans-serif;
+    font-size:36px;
+    font-weight:800;
+    background:linear-gradient(135deg, #D94C7B, #EE7FA6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin:20px 0;
+    animation: scaleUp 0.8s cubic-bezier(0.26, 1.8, 0.64, 1);
+  }
+  @keyframes scaleUp{
+    0%{ transform:scale(0.5); opacity:0; }
+    100%{ transform:scale(1); opacity:1; }
+  }
+  .milestone-sparkles{
+    display:flex;
+    justify-content:space-around;
+    margin-top:20px;
+  }
+  .sparkle{
+    font-size:28px;
+    animation: sparkleFloat 2s ease-in-out infinite;
+  }
+  .sparkle:nth-child(1){ animation-delay:0s; }
+  .sparkle:nth-child(2){ animation-delay:0.3s; }
+  .sparkle:nth-child(3){ animation-delay:0.6s; }
+  .sparkle:nth-child(4){ animation-delay:0.9s; }
+  .sparkle:nth-child(5){ animation-delay:1.2s; }
+  @keyframes sparkleFloat{
+    0%, 100%{ transform:translateY(0px) scale(1); opacity:1; }
+    50%{ transform:translateY(-15px) scale(1.2); opacity:0.8; }
+  }
+ 
+  /* Confetti */
+  .confetti{
+    position:absolute;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .confetti-piece{
+    position:absolute;
+    width:10px;
+    height:10px;
+    animation: confettiFall 3s linear infinite;
+  }
+  @keyframes confettiFall{
+    to{ transform:translateY(500px) rotate(720deg); opacity:0; }
+  }
+ 
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+  @keyframes popIn{ 0%{ transform:scale(0.5); opacity:0; } 100%{ transform:scale(1); opacity:1; } }
+  @keyframes float{ 0%, 100%{ transform:translateY(0px); } 50%{ transform:translateY(-8px); } }
+  @keyframes heartbeat{ 0%, 100%{ transform:scale(1); } 50%{ transform:scale(1.1); } }
+ 
     text-align:center;
     color:var(--sage-deep);
     font-weight:700;
@@ -501,6 +690,38 @@
 </head>
 <body>
 <div class="phone">
+ <!-- ANNIVERSARY REGULAR MODAL -->
+  <div id="anniversary-overlay" class="anniversary-overlay" style="display:none;">
+    <div class="anniversary-modal">
+      <button class="anniversary-close" onclick="closeAnniversary()">✕</button>
+      <div class="anniversary-content">
+        <div class="anniversary-emoji">💕</div>
+        <h2>Hẹ hẹ!</h2>
+        <p>Chúc mừng bạn trai đã có được toi</p>
+        <div class="anniversary-time" id="anniversary-time">1 năm 8 tháng</div>
+      </div>
+    </div>
+ 
+  <!-- ANNIVERSARY MILESTONE MODAL (2, 3, 4... năm) -->
+  <div id="milestone-overlay" class="milestone-overlay" style="display:none;">
+    <div class="milestone-modal">
+      <button class="anniversary-close" onclick="closeAnniversary()">✕</button>
+      <div class="confetti" id="confetti"></div>
+      <div class="milestone-content">
+        <div class="milestone-emoji">🎉✨💕✨🎉</div>
+        <h2 class="milestone-title">ĐẠT CÓT MỐC!</h2>
+        <p class="milestone-subtitle">Chúc mừng bạn trai đã có được toi</p>
+        <div class="milestone-time" id="milestone-time">2 năm</div>
+        <div class="milestone-sparkles">
+          <span class="sparkle">✨</span>
+          <span class="sparkle">💖</span>
+          <span class="sparkle">✨</span>
+          <span class="sparkle">🎊</span>
+          <span class="sparkle">✨</span>
+        </div>
+      </div>
+    </div>
+    
   <div class="eyebrow">Welcome To Em Trâm's Shop</div>
   <h1 class="title">TRỊNH IU<br>CHỌN ĐI 💗</h1>
  
@@ -1205,6 +1426,91 @@ function renderPromises(){
     </div>
   `).join('');
 }
+
+  /* ---------- INIT ON LOAD ---------- */
+document.addEventListener('DOMContentLoaded', function(){
+  showSyncCodeModal();
+});/* ---------- ANNIVERSARY ---------- */
+const ANNIVERSARY_DATE = new Date(2024, 10, 2); // 2/11/2024 (month 0-indexed)
+ 
+function calculateAnniversary(){
+  const today = new Date();
+  let years = today.getFullYear() - ANNIVERSARY_DATE.getFullYear();
+  let months = today.getMonth() - ANNIVERSARY_DATE.getMonth();
+  
+  if(today.getDate() < ANNIVERSARY_DATE.getDate()){
+    months--;
+  }
+  
+  if(months < 0){
+    years--;
+    months += 12;
+  }
+  
+  return { years, months };
+}
+ 
+function isAnniversaryDay(){
+  const today = new Date();
+  return today.getDate() === 2;
+}
+ 
+function isMilestoneYear(){
+  const { years, months } = calculateAnniversary();
+  // Tròn năm (0 tháng) = milestone
+  return months === 0;
+}
+ 
+function createConfetti(){
+  const confettiContainer = document.getElementById('confetti');
+  confettiContainer.innerHTML = '';
+  
+  const colors = ['#D94C7B', '#EE7FA6', '#F7C6D9', '#8FAE8B', '#FFE5F0'];
+  for(let i = 0; i < 30; i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 0.5 + 's';
+    piece.style.animationDuration = (2 + Math.random() * 1) + 's';
+    confettiContainer.appendChild(piece);
+  }
+}
+ 
+function showAnniversaryModal(){
+  if(!isAnniversaryDay()) return;
+  
+  const { years, months } = calculateAnniversary();
+  
+  if(isMilestoneYear()){
+    // Show milestone modal
+    const timeStr = years === 1 ? '1 năm' : years + ' năm';
+    document.getElementById('milestone-time').textContent = timeStr;
+    document.getElementById('milestone-overlay').style.display = 'flex';
+    createConfetti();
+  } else {
+    // Show regular modal
+    const timeStr = `${years} năm ${months} tháng`;
+    document.getElementById('anniversary-time').textContent = timeStr;
+    document.getElementById('anniversary-overlay').style.display = 'flex';
+  }
+}
+ 
+function closeAnniversary(){
+  document.getElementById('anniversary-overlay').style.display = 'none';
+  document.getElementById('milestone-overlay').style.display = 'none';
+  localStorage.setItem('anniversary_shown_date', new Date().toISOString().slice(0,10));
+}
+ 
+// Show modal khi load app
+document.addEventListener('DOMContentLoaded', function(){
+  const today = new Date().toISOString().slice(0,10);
+  const lastShown = localStorage.getItem('anniversary_shown_date');
+  
+  if(isAnniversaryDay() && lastShown !== today){
+    setTimeout(() => showAnniversaryModal(), 800);
+  }
+});
 </script>
 </body>
 </html>

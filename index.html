@@ -1205,59 +1205,6 @@ function renderPromises(){
     </div>
   `).join('');
 }
-/* ---------- ANNIVERSARY ---------- */
-const ANNIVERSARY_DATE = new Date(2024, 10, 2); // 2/11/2024 (month 0-indexed)
- 
-function calculateAnniversary(){
-  const today = new Date();
-  let years = today.getFullYear() - ANNIVERSARY_DATE.getFullYear();
-  let months = today.getMonth() - ANNIVERSARY_DATE.getMonth();
-  
-  // Nếu ngày hiện tại chưa đến ngày kỷ niệm trong tháng
-  if(today.getDate() < ANNIVERSARY_DATE.getDate()){
-    months--;
-  }
-  
-  // Nếu tháng âm, trừ năm
-  if(months < 0){
-    years--;
-    months += 12;
-  }
-  
-  return { years, months };
-}
- 
-function isAnniversaryDay(){
-  const today = new Date();
-  // Kiểm tra nếu là ngày 2 của bất kỳ tháng nào
-  return today.getDate() === 2;
-}
- 
-function showAnniversaryModal(){
-  if(!isAnniversaryDay()) return;
-  
-  const { years, months } = calculateAnniversary();
-  const timeStr = `${years} năm ${months} tháng`;
-  
-  document.getElementById('anniversary-time').textContent = timeStr;
-  document.getElementById('anniversary-overlay').style.display = 'flex';
-}
- 
-function closeAnniversary(){
-  document.getElementById('anniversary-overlay').style.display = 'none';
-  // Lưu ngày đã show modal để không hiện lại hôm nay
-  localStorage.setItem('anniversary_shown_date', new Date().toISOString().slice(0,10));
-}
- 
-// Show modal khi load app (nếu là ngày kỷ niệm và chưa show hôm nay)
-document.addEventListener('DOMContentLoaded', function(){
-  const today = new Date().toISOString().slice(0,10);
-  const lastShown = localStorage.getItem('anniversary_shown_date');
-  
-  if(isAnniversaryDay() && lastShown !== today){
-    setTimeout(() => showAnniversaryModal(), 500); // Delay 500ms để hiệu ứng đẹp
-  }
-});
 </script>
 </body>
 </html>

@@ -1391,79 +1391,71 @@ function renderPromises(){
 }
 
 /* ---------- ANNIVERSARY ---------- */
+// Ngày bắt đầu yêu nhau: Ngày 02 tháng 11 năm 2024 (Lưu ý: Tháng trong JS bắt đầu từ 0, nên tháng 11 là số 10)
 const ANNIVERSARY_DATE = new Date(2024, 10, 2); 
- 
+
 function calculateAnniversary(){
   const today = new Date();
-  let years = today.getFullYear() - ANNIVERSARY_DATE.getFullYear();
-  let months = today.getMonth() - ANNIVERSARY_DATE.getMonth();
   
-  if(today.getDate() < ANNIVERSARY_DATE.getDate()){
-    months--;
+  // Tính tổng số tháng đã trải qua
+  let totalMonths = (today.getFullYear() - ANNIVERSARY_DATE.getFullYear()) * 12 + (today.getMonth() - ANNIVERSARY_DATE.getMonth());
+  
+  // Nếu chưa tới ngày 2 của tháng này thì chưa tính tháng đó
+  if (today.getDate() < ANNIVERSARY_DATE.getDate()) {
+    totalMonths--;
   }
-  
-  if(months < 0){
-    years--;
-    months += 12;
-  }
-  
-  return { years, months };
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  return { years, months, totalMonths };
 }
- 
-function isAnniversaryDay(){
-  const today = new Date();
-  return today.getDate() === 2;
-}
- 
-function isMilestoneYear(){
-  const { years, months } = calculateAnniversary();
-  return months === 0;
-}
- 
-function createConfetti(){
-  const confettiContainer = document.getElementById('confetti');
-  confettiContainer.innerHTML = '';
-  
-  const colors = ['#D94C7B', '#EE7FA6', '#F7C6D9', '#8FAE8B', '#FFE5F0'];
-  for(let i = 0; i < 30; i++){
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    piece.style.left = Math.random() * 100 + '%';
-    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-    piece.style.animationDelay = Math.random() * 0.5 + 's';
-    piece.style.animationDuration = (2 + Math.random() * 1) + 's';
-    confettiContainer.appendChild(piece);
-  }
-}
- 
+
 function showAnniversaryModal(){
-  if(!isAnniversaryDay()) return;
+  const today = new Date();
   
-  const { years, months } = calculateAnniversary();
+  // 1. Kiểm tra có đúng là ngày 02 hàng tháng không
+  if (today.getDate() !== 2) return;
+
+  const { years, months, totalMonths } = calculateAnniversary();
   
-  if(isMilestoneYear()){
-    const timeStr = years === 1 ? '1 năm' : years + ' năm';
+  // Tránh trường hợp chưa đến ngày kỷ niệm đầu tiên
+  if (totalMonths < 1) return;
+
+  // 2. PHÂN LOẠI POP-UP:
+  // Nếu số tháng dư = 0 VÀ đã yêu nhau từ 1 năm (12 tháng) trở lên -> Hiện Pop-up Tròn Năm (Milestone)
+  if (months === 0 && years >= 1) {
+    const timeStr = `${years} năm`;
     document.getElementById('milestone-time').textContent = timeStr;
     document.getElementById('milestone-overlay').style.display = 'flex';
-    createConfetti();
-  } else {
-    const timeStr = `${years} năm ${months} tháng`;
+    createConfetti(); // Bắn pháo hoa
+  } 
+  // Ngược lại (ngày 2 các tháng lẻ khác) -> Hiện Pop-up Tháng thường
+  else {
+    let timeStr = "";
+    if (years > 0) {
+      timeStr = `${years} năm ${months} tháng`;
+    } else {
+      timeStr = `${months} tháng`;
+    }
     document.getElementById('anniversary-time').textContent = timeStr;
     document.getElementById('anniversary-overlay').style.display = 'flex';
   }
 }
- 
+
 function closeAnniversary(){
   document.getElementById('anniversary-overlay').style.display = 'none';
   document.getElementById('milestone-overlay').style.display = 'none';
+  // Lưu lại ngày đã xem để trong ngày hôm đó không bị hiện lại nữa
   localStorage.setItem('anniversary_shown_date', new Date().toISOString().slice(0,10));
 }
- 
+
 document.addEventListener('DOMContentLoaded', function(){
-  const today = new Date().toISOString().slice(0,10);
+  const todayStr = new Date().toISOString().slice(0,10);
   const lastShown = localStorage.getItem('anniversary_shown_date');
   
-  if(isAnniversaryDay() && lastShown !== today){
+  // Nếu hôm nay là ngày 2 và CHƯA tắt popup lần nào trong ngày thì mới hiện
+  if (new Date().getDate() === 2 && lastShown !== todayStr) {
     setTimeout(() => showAnniversaryModal(), 800);
   }
 });
